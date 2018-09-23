@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: tomatoes;
+    src: url('../fonts/tomatoes.ttf');
+}
+
+@font-face {
+    font-family: conformity;
+    src: url('../fonts/conformity.TTF');
+}
+
+// ########### SPLASH ###########
+.splashPage {
+    background-image: url('../images/splash.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    .overlay {
+        background-color: rgba(0,0,0,0.5);
+        height: 60vh;
+        .splashLogo {
+            left: 50%;
+            position: absolute;
+            text-align: center;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            .splashText {
+                font-family: conformity;
+                font-size: 60px;
+            }
+            h1 {
+                color: white;
+                text-shadow: 0px 0px 3px black;
+            }
+        }
+    }
+}
+// ########### NAVBAR ###########
+.navbar {
+    padding-top: 10px;
+}
+
+.navbarLogo h1 {
+    font-family: conformity;
+    font-size: 40px;
+}
+
+.navbarOptions span {
+    margin-left: 10px;
+}
+.navbarNewGroup {
+    font-size: 20px;
+}
+
+// ########### Filler ###########
+.filler {
+    background-image: url('../images/navbar_meetup.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+    .overlay {
+        background-color: rgba(0,0,0,0.3);
+        height: 50vh;
+    }
+    .fillerDiv {
+        left: 50%;
+        text-align: center;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        h1 {
+            color: white;
+            text-shadow: 0px 0px 3px black;
+        }
+    }
+}
+
+// ########### FOOTER ###########
+
+.footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    .overlay {
+        height: 40vh;
+        .social-media {
+            display: flex;
+            justify-content: center;
+            top: 50%;
+            position: relative;
+        .fa-linkedin, .fa-facebook-f, .fa-github, .fa-envelope {
+            color: white;
+            margin: 0 10px;
+        }
+        }
+        .copyright {
+            top: 50%;
+            left: 50%;
+            position: relative;
+            transform: translate(-50%, 0);
+        p {
+            color: white;
+            padding-top: 40px;
+            text-align: center;
+        }
+        .signature {
+            font-family: tomatoes;
+            text-shadow: 0px 0px 3px black;
+        }
+        }
+    }
+}
