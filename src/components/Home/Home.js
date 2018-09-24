@@ -12,24 +12,16 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    getCategories: () => dispatch(getCategories())
+    return {getCategories: () => dispatch(getCategories())}
 }
 
 class Home extends Component {
 
-    state = {
-        categories: []
-    }
-
     componentDidMount() {
-        // this.props.getCategories()
-        // fetch('http://127.0.0.1:8000/api/v1/categories/')
-        // .then( r => r.json() )
-        // .then( console.log )
+        this.props.getCategories()
     }
 
     render() {
-        console.log(this.state.categories)
         return (
             <div>
                 <Navbar />
@@ -41,4 +33,4 @@ class Home extends Component {
     }
 }
 
-export default connect(mapStateToProps, {getCategories})(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

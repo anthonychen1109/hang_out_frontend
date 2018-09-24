@@ -1,15 +1,15 @@
+import * as APIUtil from '../../util/categories_api_util';
+
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 
-const fetchCategories = (categories) => {
+const setCategories = (categories) => {
     return {
         type: FETCH_CATEGORIES,
-        payload: { categories }
+        payload: {categories}
     }
 }
 
-export const getCategories = () => {
-    const request = fetch(`http://127.0.0.1:8000/api/v1/categories/`)
-    return dispatch => {
-        request.then( data => dispatch(fetchCategories(data)))
-    }
-} 
+export const getCategories = () => dispatch => {
+    APIUtil.fetch_categories().then(categories => {
+        dispatch(setCategories(categories))});
+};

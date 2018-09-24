@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Signup from '../Signup/Signup';
 import UserModal from '../UserModal/Usermodal';
 
 class Filler extends Component {
@@ -23,7 +22,7 @@ class Filler extends Component {
             <div className="filler">
                 <div className="overlay">
                     <div className="fillerDiv">
-                        <h1>Do more of what you love with hang outs</h1>
+                        <h1>Do more of what you love with Hang Outs</h1>
                         <UserModal
                             registered={this.state.registered}
                             register={this.register}

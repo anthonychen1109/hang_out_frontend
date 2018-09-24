@@ -84,6 +84,25 @@
 // ########### CATEGORIES ###########
 .categoriesDiv {
     margin-top: 40px;
+    margin-bottom: 40px;
+    .categoriesCards {
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
+}
+
+// ########### CARD ###########
+.card {
+  margin: 10px;
+  width: 25rem;
+  .card-img-top {
+    max-height: 30vh;
+    overflow: hidden;
+  }
+  .card-body {
+    max-height: 10vh;
+  }
 }
 
 // ########### FOOTER ###########

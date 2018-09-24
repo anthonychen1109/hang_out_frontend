@@ -63,7 +63,21 @@
       text-shadow: 0px 0px 3px black; }
 
 .categoriesDiv {
-  margin-top: 40px; }
+  margin-top: 40px;
+  margin-bottom: 40px; }
+  .categoriesDiv .categoriesCards {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap; }
+
+.card {
+  margin: 10px;
+  width: 25rem; }
+  .card .card-img-top {
+    max-height: 30vh;
+    overflow: hidden; }
+  .card .card-body {
+    max-height: 10vh; }
 
 .footer {
   position: absolute;

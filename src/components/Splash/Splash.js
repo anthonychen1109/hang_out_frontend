@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react'
 import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Input, TextArea, Button } from 'semantic-ui-react'
+import { Form, Input } from 'semantic-ui-react'
 
 class HandleUserForm extends Component {
 
@@ -88,11 +88,11 @@ class HandleUserForm extends Component {
             </Form.Field>
 
             <div className='ui buttons'>
-                <button className='ui button' role='button' onClick={this.props.handleClose}>
+                <button className='ui button' onClick={this.props.handleClose}>
                 Cancel
                 </button>
                 <div />
-                <button className='ui positive button' role='button'>
+                <button className='ui positive button'>
                 Submit
                 </button>
             </div>
@@ -122,11 +122,11 @@ class HandleUserForm extends Component {
             </Form.Field>
 
             <div className='ui buttons'>
-                <button className='ui button' role='button' onClick={this.props.handleClose}>
+                <button className='ui button' onClick={this.props.handleClose}>
                 Cancel
                 </button>
                 <div />
-                <button className='ui positive button' role='button'>
+                <button className='ui positive button'>
                 Submit
                 </button>
             </div>

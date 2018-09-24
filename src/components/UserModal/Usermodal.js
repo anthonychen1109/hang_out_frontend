@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Dimmer, Header, Icon } from 'semantic-ui-react'
+import { Button, Dimmer, Header } from 'semantic-ui-react'
 import HandleUserForm from './HandleUserForm';
 
 export default class UserModal extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Dimmer, Header, Icon } from 'semantic-ui-react'
+import { Button, Dimmer, Header } from 'semantic-ui-react'
 import HandleUserForm from '../UserModal/HandleUserForm';
 
 class Navbar extends Component {

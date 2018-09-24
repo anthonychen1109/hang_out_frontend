@@ -1,6 +1,6 @@
 import { FETCH_CATEGORIES } from '../components/Home/actions';
 
-const CategoriesReducer = (state={}, action) => {
+const CategoriesReducer = (state={categories: []}, action) => {
     switch(action.type) {
         case FETCH_CATEGORIES:
         console.log('reducer', action.payload.categories);
