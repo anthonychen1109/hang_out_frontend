@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getCategories } from './actions';
 import Categories from '../Categories/Categories';
-import Navbar from '../Navbar/navbar';
+import Navbar from '../Navbar/Navbar';
 import Filler from '../Filler/Filler';
 
 const mapStateToProps = (state) => {
@@ -23,9 +23,9 @@ class Home extends Component {
 
     componentDidMount() {
         // this.props.getCategories()
-        fetch('http://127.0.0.1:8000/api/v1/categories/')
-        .then( r => r.json() )
-        .then( console.log )
+        // fetch('http://127.0.0.1:8000/api/v1/categories/')
+        // .then( r => r.json() )
+        // .then( console.log )
     }
 
     render() {
@@ -35,7 +35,7 @@ class Home extends Component {
                 <Navbar />
                 <hr />
                 <Filler />
-                <Categories/>
+                <Categories />
             </div>
         )
     }
