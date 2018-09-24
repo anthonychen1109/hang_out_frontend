@@ -81,14 +81,24 @@
 
 .startOwn {
   background-color: black;
-  padding-bottom: 80px;
-  padding-top: 40px; }
-  .startOwn .startOwnHeader {
-    color: white; }
-  .startOwn .startOwnDocs {
-    display: flex; }
-    .startOwn .startOwnDocs div {
-      margin: 10px; }
+  padding: 0px 0px 40px 0px; }
+
+.startOwnHeader {
+  color: white;
+  text-align: center;
+  text-shadow: 0px 0px 3px black;
+  padding: 40px 0px 40px 0px; }
+
+.startOwnDocsSocial {
+  display: flex;
+  justify-content: space-evenly; }
+
+.copyright {
+  color: white;
+  font-family: tomatoes;
+  padding-top: 20px;
+  text-align: center;
+  text-shadow: 0px 0px 3px black; }
 
 .footer {
   position: absolute;
