@@ -18,7 +18,18 @@ class HandleUserForm extends Component {
     }
 
     handleLogin = () => {
-
+        const newUser = {
+            username: this.state.userName,
+            password: this.state.password
+        }
+        fetch('http://127.0.0.1:8000/api/v1/rest-auth/login/', {
+            method: "POST",
+            headers:{
+                'Content-Type': 'application/json'
+                },
+            body: JSON.stringify(newUser)
+        }).then( resp => resp.json() )
+        .then(this.loggedInUser())
     }
 
     handleRegister = () => {
@@ -38,7 +49,7 @@ class HandleUserForm extends Component {
             'Content-Type': 'application/json'
             },
             body: JSON.stringify(newUser)
-        }).then( resp => resp.json())
+        }).then( resp => resp.json() )
         .then(this.createdUser)
         }
     }
@@ -49,6 +60,14 @@ class HandleUserForm extends Component {
         password: '',
         confirmPassword: '',
         email: ''
+        })
+        this.props.handleClose()
+    }
+
+    loggedInUser = () => {
+        this.setState({
+        userName: '',
+        password: ''
         })
         this.props.handleClose()
     }
