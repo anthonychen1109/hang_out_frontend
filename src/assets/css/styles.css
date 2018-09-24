@@ -79,6 +79,17 @@
   .card .card-body {
     max-height: 10vh; }
 
+.startOwn {
+  background-color: black;
+  padding-bottom: 80px;
+  padding-top: 40px; }
+  .startOwn .startOwnHeader {
+    color: white; }
+  .startOwn .startOwnDocs {
+    display: flex; }
+    .startOwn .startOwnDocs div {
+      margin: 10px; }
+
 .footer {
   position: absolute;
   width: 100%;

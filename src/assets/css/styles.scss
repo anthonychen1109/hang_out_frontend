@@ -105,6 +105,22 @@
   }
 }
 
+// ########### STARTOWN ###########
+.startOwn {
+  background-color: black;
+  padding-bottom: 80px;
+  padding-top: 40px;
+  .startOwnHeader {
+    color: white;
+  }
+  .startOwnDocs {
+    display: flex;
+    div {
+      margin: 10px;
+    }
+  }
+}
+
 // ########### FOOTER ###########
 
 .footer {

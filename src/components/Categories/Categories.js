@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CategoryCard from './CategoryCard';
+import StartOwn from '../StartOwn/StartOwn';
 
 const mapStateToProps = (state) => {
     return {
@@ -24,6 +25,7 @@ class Categories extends Component {
                       { this.renderCategories() }
                     </div>
                 </div>
+                <StartOwn />
             </div>
         )
     }
