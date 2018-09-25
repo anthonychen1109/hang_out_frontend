@@ -7,13 +7,13 @@ class Navbar extends Component {
     state = {
         registered: false
     }
-    
+
     register = () => {
         this.setState({
             registered: false
         })
     }
-    
+
     login = () => {
         this.setState({
             registered: true
@@ -49,7 +49,7 @@ class Navbar extends Component {
                     <span className="navbarNewGroup"><Link to='/new_group'>Start a new group</Link> |</span>
                     <Button
                         className="registerLoginBtn"
-                        basic color='green'
+                        basic color='blue'
                         onClick={this.handleRegister}>
                         Sign Up
                     </Button>
@@ -63,7 +63,7 @@ class Navbar extends Component {
                 <Dimmer active={active} onClickOutside={this.handleClose} page>
                     <Header as='h2' icon inverted>
                         <HandleUserForm
-                            handleOpen={this.handleOpen} 
+                            handleOpen={this.handleOpen}
                             handleClose={this.handleClose}
                             registered={this.state.registered}
                         />

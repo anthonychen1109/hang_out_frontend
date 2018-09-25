@@ -8,6 +8,7 @@ import './assets/css/styles.css';
 import 'semantic-ui-css/semantic.min.css';
 import Splash from './components/Splash/Splash';
 import Home from './components/Home/Home';
+import Group from './components/Groups/Group';
 import reducer from './reducers/root_reducer';
 
 const store = createStore(reducer, applyMiddleware(thunk))
@@ -18,6 +19,7 @@ const routes = (
             <Switch>
                 <Route exact path="/" component={Splash} />>
                 <Route path="/home" component={Home} />
+                <Route path="/categories/:id" component={Group} />
             </Switch>
         </BrowserRouter>
     </Provider>

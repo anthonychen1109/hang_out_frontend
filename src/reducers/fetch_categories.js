@@ -1,4 +1,4 @@
-import { FETCH_CATEGORIES } from '../components/Home/actions';
+import { FETCH_CATEGORIES } from '../components/Categories/actions';
 
 const CategoriesReducer = (state={categories: []}, action) => {
     switch(action.type) {

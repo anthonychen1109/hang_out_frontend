@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCategories } from './actions';
+import { getCategories } from '../Categories/actions';
 import Categories from '../Categories/Categories';
 import Navbar from '../Navbar/Navbar';
 import Filler from '../Filler/Filler';
@@ -12,7 +12,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {getCategories: () => dispatch(getCategories())}
+    return {
+      getCategories: () => dispatch(getCategories())
+    }
 }
 
 class Home extends Component {

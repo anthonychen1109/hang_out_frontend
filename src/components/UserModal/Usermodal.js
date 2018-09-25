@@ -29,14 +29,14 @@ export default class UserModal extends Component {
             <div>
                 <Button
                     className="registerLoginBtn"
-                    color="red"
+                    inverted color="blue"
                     onClick={this.handleRegister}>
                     Sign Up
                 </Button>
                 <Dimmer active={active} onClickOutside={this.handleClose} page>
                 <Header as='h2' icon inverted>
                     <HandleUserForm
-                        handleOpen={this.handleOpen} 
+                        handleOpen={this.handleOpen}
                         handleClose={this.handleClose}
                         registered={this.props.registered}
                     />

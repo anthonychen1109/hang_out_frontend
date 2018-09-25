@@ -55,6 +55,7 @@
 }
 .navbarNewGroup {
     font-size: 20px;
+    margin-right: 10px;
 }
 
 // ########### Filler ###########
@@ -85,6 +86,9 @@
 .categoriesDiv {
     margin-top: 40px;
     margin-bottom: 40px;
+    h1 {
+      margin-left: 10px;
+    }
     .categoriesCards {
       display: flex;
       justify-content: space-evenly;

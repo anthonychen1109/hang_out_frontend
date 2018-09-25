@@ -41,7 +41,8 @@
   margin-left: 10px; }
 
 .navbarNewGroup {
-  font-size: 20px; }
+  font-size: 20px;
+  margin-right: 10px; }
 
 .filler {
   background-image: url("../images/navbar_meetup.jpg");
@@ -65,6 +66,8 @@
 .categoriesDiv {
   margin-top: 40px;
   margin-bottom: 40px; }
+  .categoriesDiv h1 {
+    margin-left: 10px; }
   .categoriesDiv .categoriesCards {
     display: flex;
     justify-content: space-evenly;

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import CategoryCard from './CategoryCard';
 import StartOwn from '../StartOwn/StartOwn';
+import { getCategory } from './actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -12,7 +14,13 @@ const mapStateToProps = (state) => {
 class Categories extends Component {
 
   renderCategories = () => {
-    return this.props.categories.categories.map( (category, index) => <CategoryCard key={index} name={category.name} img={category.cat_img}/> )
+    return this.props.categories.categories.map( (category, index) =>
+      <Link to={`/categories/${category.id}`}><CategoryCard
+        key={index}
+        name={category.name}
+        img={category.cat_img}
+        /></Link>
+    )
   }
 
     render() {
