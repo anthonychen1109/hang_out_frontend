@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-class Home extends Component {
+class Welcome extends Component {
 
   state = {
     hasToken: false
@@ -58,15 +58,14 @@ class Home extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <Navbar setToken={() => this.setToken()} hasToken={this.state.hasToken}/>
-        <hr />
-        <Filler setToken={() => this.setToken()}/>
-        <Categories />
-      </div>
-    )
+    // <div>
+    //     <Navbar setToken={() => this.setToken()} hasToken={this.state.hasToken} deleteToken={() => this.deleteToken()}/>
+    //     <Events />
+    //   </div>
+    return this.state.hasToken
+    ? <Redirect to='/events'/>
+    : <Redirect to='/home' />
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

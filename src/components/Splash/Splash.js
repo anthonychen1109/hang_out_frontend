@@ -9,9 +9,9 @@ class Splash extends Component {
                 <div className="overlay">
                     <div className="splashLogo">
                         <h1 className="splashText">Hang Outs</h1>
-                        <Link to="/home">
+                        <Link to="/welcome">
                         <button type="button" className="btn btn-outline-primary animated bounceInDown">Get Started</button>
-                        </Link>  
+                        </Link>
                     </div>
                     <Footer />
                 </div>

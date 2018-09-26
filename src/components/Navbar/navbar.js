@@ -40,7 +40,7 @@ class Navbar extends Component {
 
     handleLogout = () => {
       this.props.deleteToken()
-      return <Redirect to='/' />
+      return <Redirect to='/home' />
     }
 
     render() {

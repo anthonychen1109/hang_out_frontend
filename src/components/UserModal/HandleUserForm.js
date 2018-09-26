@@ -22,6 +22,8 @@ class HandleUserForm extends Component {
     }
 
     handleLogin = (e) => {
+
+      console.log('hi');
       e.preventDefault();
       const newUser = {
           username: this.state.username,
@@ -115,7 +117,7 @@ class HandleUserForm extends Component {
                 Cancel
                 </button>
                 <div />
-                <button className='ui positive button'>
+                <button type='submit' className='ui positive button'>
                 Submit
                 </button>
             </div>

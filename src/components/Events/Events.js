@@ -32,6 +32,7 @@ class Events extends Component {
   render() {
     return (
       <div>
+        <Navbar />
         <EventsFiller />
         <div className="eventCards">
           {this.renderEvents()}
