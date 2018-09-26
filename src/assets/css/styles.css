@@ -82,6 +82,14 @@
   .card .card-body {
     max-height: 10vh; }
 
+.registerForm, .loginForm {
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 40px; }
+  .registerForm h1, .loginForm h1 {
+    color: black; }
+
 .startOwn {
   background-color: black;
   padding: 0px 0px 40px 0px; }

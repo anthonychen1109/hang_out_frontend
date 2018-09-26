@@ -9,8 +9,10 @@ class HandleUserForm extends Component {
         password: '',
         confirmPassword: '',
         email: '',
+        first_name: '',
+        last_name: '',
         showPage: false,
-        loggedInUser: false
+        userLoggedIn: false
     }
 
     handleChange = (e) => {
@@ -37,12 +39,11 @@ class HandleUserForm extends Component {
         .then(json => {
           localStorage.setItem('token', json.token);
           this.props.setToken()
-          // this.setState({
-          //   loggedInUser: true,
-          //   username: json.username
-          // }, () => this. );
+          this.setState({
+            userLoggedIn: true,
+            username: json.username
+          }, this.loggedInUser);
         });
-        // debugger
     }
 
     handleRegister = (e) => {
@@ -54,6 +55,8 @@ class HandleUserForm extends Component {
       const newUser = {
           username: this.state.username,
           password: this.state.password,
+          first_name: this.state.first_name,
+          last_name: this.state.last_name
       }
        fetch('http://127.0.0.1:8000/api/users/', {
          method: 'POST',
@@ -80,9 +83,10 @@ class HandleUserForm extends Component {
 
     createdUser = () => {
         this.setState({
-        userName: '',
+        username: '',
         password: '',
-        confirmPassword: ''
+        first_name: '',
+        last_name: ''
         })
         this.props.handleClose()
     }
@@ -90,7 +94,9 @@ class HandleUserForm extends Component {
     loggedInUser = () => {
         this.setState({
         userName: '',
-        password: ''
+        password: '',
+        first_name: '',
+        last_name: ''
         })
         this.props.handleClose()
     }
@@ -98,7 +104,7 @@ class HandleUserForm extends Component {
     render() {
         return (
         this.props.registered
-            ? <Form onSubmit={this.handleLogin}>
+            ? <Form className="loginForm" onSubmit={this.handleLogin}>
             <h1>Login</h1>
             <Form.Field>
                 <label><p className="formInputs">User Name</p></label>
@@ -121,13 +127,22 @@ class HandleUserForm extends Component {
             </div>
             </Form>
 
-            : <Form onSubmit={this.handleRegister}>
+            : <Form className="registerForm" onSubmit={this.handleRegister}>
             <h1>Register</h1>
             <Form.Field>
                 <label><p className="formInputs">User Name</p></label>
                 <Input type='text' placeholder="User Name" name="username" onChange={this.handleChange}/>
             </Form.Field>
 
+            <Form.Field>
+                <label><p className="formInputs">First Name</p></label>
+                <Input type='text' placeholder="First Name" name="first_name" onChange={this.handleChange}/>
+            </Form.Field>
+
+            <Form.Field>
+                <label><p className="formInputs">Last Name</p></label>
+                <Input type='text' placeholder="Last Name" name="last_name" onChange={this.handleChange}/>
+            </Form.Field>
 
 
             <Form.Field>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom'
 import { getCategories } from '../Categories/actions';
 import Categories from '../Categories/Categories';
 import Navbar from '../Navbar/Navbar';
@@ -21,7 +22,8 @@ const mapDispatchToProps = (dispatch) => {
 class Home extends Component {
 
   state = {
-    hasToken: false
+    hasToken: false,
+    redirect: false
   }
 
   componentDidMount() {
@@ -42,7 +44,16 @@ class Home extends Component {
   setToken = () => {
     const token = localStorage.getItem("token")
     if (token) {
-      this.setState({ hasToken: true })
+      this.setState({
+        hasToken: true,
+        redirect: true
+      })
+    }
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
     }
   }
 
