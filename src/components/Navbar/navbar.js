@@ -63,6 +63,7 @@ class Navbar extends Component {
                 <Dimmer active={active} onClickOutside={this.handleClose} page>
                     <Header as='h2' icon inverted>
                         <HandleUserForm
+                            setToken={this.props.setToken}
                             handleOpen={this.handleOpen}
                             handleClose={this.handleClose}
                             registered={this.state.registered}

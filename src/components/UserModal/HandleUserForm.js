@@ -9,7 +9,8 @@ class HandleUserForm extends Component {
         password: '',
         confirmPassword: '',
         email: '',
-        showPage: false
+        showPage: false,
+        loggedInUser: false
     }
 
     handleChange = (e) => {
@@ -25,7 +26,6 @@ class HandleUserForm extends Component {
           username: this.state.username,
           password: this.state.password,
       }
-      console.log(newUser);
       fetch('http://localhost:8000/token-auth/', {
         method: 'POST',
         headers: {
@@ -36,10 +36,13 @@ class HandleUserForm extends Component {
         .then(res => res.json())
         .then(json => {
           localStorage.setItem('token', json.token);
-          this.setState({
-            username: json.username
-          }, () => console.log );
+          this.props.setToken()
+          // this.setState({
+          //   loggedInUser: true,
+          //   username: json.username
+          // }, () => this. );
         });
+        // debugger
     }
 
     handleRegister = (e) => {

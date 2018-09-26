@@ -1,4 +1,4 @@
-import * as APIUtil from '../../util/categories_api_util';
+import * as APIAdapter from '../../adapter/categories_api_adapter';
 
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const FETCH_CATEGORY = 'FETCH_CATEGORY'
@@ -11,6 +11,7 @@ const setCategories = (categories) => {
 }
 
 const setCategory = (category) => {
+  console.log('category', category);
   return {
     type: FETCH_CATEGORY,
     payload: {category}
@@ -18,13 +19,14 @@ const setCategory = (category) => {
 }
 
 export const getCategories = () => dispatch => {
-    APIUtil.fetch_categories().then(categories => {
+    APIAdapter.fetch_categories().then(categories => {
       dispatch(setCategories(categories))
     });
 };
 
-export const fetch_category = () => dispatch => {
-  APIUtil.fetch_categories().then(category => {
-    dispatch(setCategory(category.id))
+export const getCategory = (id) => dispatch => {
+  APIAdapter.fetch_category(id).then(category => {
+    dispatch(setCategory(category))
+    // console.log(category)
   })
 }

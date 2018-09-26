@@ -4,6 +4,7 @@ import { getCategories } from '../Categories/actions';
 import Categories from '../Categories/Categories';
 import Navbar from '../Navbar/Navbar';
 import Filler from '../Filler/Filler';
+import Bs from './bs';
 
 const mapStateToProps = (state) => {
     return {
@@ -19,20 +20,43 @@ const mapDispatchToProps = (dispatch) => {
 
 class Home extends Component {
 
-    componentDidMount() {
-        this.props.getCategories()
-    }
+  state = {
+    hasToken: false
+  }
 
-    render() {
-        return (
-            <div>
-                <Navbar />
-                <hr />
-                <Filler />
-                <Categories />
-            </div>
-        )
+  componentDidMount() {
+    this.props.getCategories()
+    if (localStorage.getItem("token")) {
+      this.setState({ hasToken: true })
     }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('componentdid udpate');
+    const token = localStorage.getItem("token")
+      if (!prevState.hasToken && token) {
+        this.setState({ hasToken: true })
+      }
+  }
+
+  setToken = () => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      this.setState({ hasToken: true })
+    }
+  }
+
+  render() {
+    console.log(this.state.hasToken);
+    return this.state.hasToken
+    ? <Bs />
+    : <div>
+        <Navbar setToken={() => this.setToken()}/>
+        <hr />
+        <Filler setToken={() => this.setToken()}/>
+        <Categories />
+      </div>
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

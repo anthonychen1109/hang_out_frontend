@@ -3,7 +3,6 @@ import { FETCH_CATEGORY } from '../components/Categories/actions';
 const CategoryReducer = (state={category: {}}, action) => {
     switch(action.type) {
         case FETCH_CATEGORY:
-        console.log('reducer', action.payload.category);
             return {
                 ...state,
                 category: action.payload.category

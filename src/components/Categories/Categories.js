@@ -11,20 +11,26 @@ const mapStateToProps = (state) => {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCategory: (category) => dispatch(getCategory(category))
+  }
+}
+
 class Categories extends Component {
 
   renderCategories = () => {
     return this.props.categories.categories.map( (category, index) =>
-      <Link to={`/categories/${category.id}`}><CategoryCard
-        key={index}
+      <Link key={index} to={`/categories/${category.id}`} onClick={() => this.props.getCategory(category.id)}>
+        <CategoryCard
         name={category.name}
         img={category.cat_img}
-        /></Link>
+        />
+    </Link>
     )
   }
 
     render() {
-      console.log(this.props.categories.categories);
         return (
             <div className="categories">
                 <div className="categoriesDiv container">
@@ -39,4 +45,4 @@ class Categories extends Component {
     }
 }
 
-export default connect(mapStateToProps)(Categories);
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

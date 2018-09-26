@@ -5,13 +5,13 @@ class Filler extends Component {
     state = {
         registered: false
     }
-    
+
     register = () => {
         this.setState({
             registered: false
         })
     }
-    
+
     login = () => {
         this.setState({
             registered: true
@@ -24,6 +24,7 @@ class Filler extends Component {
                     <div className="fillerDiv">
                         <h1>Do more of what you love with Hang Outs</h1>
                         <UserModal
+                            setToken={this.props.setToken}
                             registered={this.state.registered}
                             register={this.register}
                             login={this.login}
