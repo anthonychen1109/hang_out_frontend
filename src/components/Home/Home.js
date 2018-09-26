@@ -6,6 +6,7 @@ import Categories from '../Categories/Categories';
 import Navbar from '../Navbar/Navbar';
 import Filler from '../Filler/Filler';
 import Bs from './bs';
+import Events from '../Events/Events';
 
 const mapStateToProps = (state) => {
     return {
@@ -60,7 +61,7 @@ class Home extends Component {
   render() {
     console.log(this.state.hasToken);
     return this.state.hasToken
-    ? <Bs />
+    ? <Events />
     : <div>
         <Navbar setToken={() => this.setToken()}/>
         <hr />
