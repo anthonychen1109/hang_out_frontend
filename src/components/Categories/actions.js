@@ -11,7 +11,6 @@ const setCategories = (categories) => {
 }
 
 const setCategory = (category) => {
-  console.log('category', category);
   return {
     type: FETCH_CATEGORY,
     payload: {category}

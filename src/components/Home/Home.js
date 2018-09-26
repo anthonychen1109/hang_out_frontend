@@ -23,8 +23,7 @@ const mapDispatchToProps = (dispatch) => {
 class Home extends Component {
 
   state = {
-    hasToken: false,
-    redirect: false
+    hasToken: false
   }
 
   componentDidMount() {
@@ -35,7 +34,6 @@ class Home extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('componentdid udpate');
     const token = localStorage.getItem("token")
       if (!prevState.hasToken && token) {
         this.setState({ hasToken: true })
@@ -46,24 +44,28 @@ class Home extends Component {
     const token = localStorage.getItem("token")
     if (token) {
       this.setState({
-        hasToken: true,
-        redirect: true
+        hasToken: true
       })
     }
   }
 
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/' />
+  deleteToken = () => {
+    const token = localStorage.removeItem("token")
+    if (token) {
+      this.setState({
+        hasToken: false
+      })
     }
   }
 
   render() {
-    console.log(this.state.hasToken);
     return this.state.hasToken
-    ? <Events />
+    ? <div>
+        <Navbar setToken={() => this.setToken()} hasToken={this.state.hasToken} deleteToken={() => this.deleteToken()}/>
+        <Events />
+      </div>
     : <div>
-        <Navbar setToken={() => this.setToken()}/>
+        <Navbar setToken={() => this.setToken()} hasToken={this.state.hasToken}/>
         <hr />
         <Filler setToken={() => this.setToken()}/>
         <Categories />

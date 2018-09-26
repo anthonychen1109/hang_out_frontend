@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getEvents } from './actions';
 import Navbar from '../Navbar/Navbar';
+import EventsFiller from './EventsFiller';
+import EventCard from './EventCard';
 
 const mapStateToProps = (state) => {
   return {
@@ -21,11 +23,19 @@ class Events extends Component {
     this.props.getEvents()
   }
 
+  renderEvents = () => {
+    return this.props.events.events.map( (event, index) => {
+      return <EventCard key={index} event={event}/>
+    })
+  }
+
   render() {
-    console.log(this.props.events);
     return (
       <div>
-        <Navbar />
+        <EventsFiller />
+        <div className="eventCards">
+          {this.renderEvents()}
+        </div>
       </div>
     )
   }

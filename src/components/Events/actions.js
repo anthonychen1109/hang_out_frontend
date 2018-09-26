@@ -11,7 +11,6 @@ const setEvents = (events) => {
 
 export const getEvents = () => dispatch => {
     APIAdapter.fetch_events().then(events => {
-      console.log("getEvents", events);
-      // dispatch(setEvents(events))
+      dispatch(setEvents(events))
     });
 };
