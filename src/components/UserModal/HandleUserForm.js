@@ -11,7 +11,6 @@ class HandleUserForm extends Component {
         email: '',
         first_name: '',
         last_name: '',
-        showPage: false,
         userLoggedIn: false
     }
 
@@ -49,7 +48,6 @@ class HandleUserForm extends Component {
     handleRegister = (e) => {
       e.preventDefault();
       if (this.state.password !== this.state.confirmPassword) {
-      console.log('no match');
       alert('passwords do not match')
       } else {
       const newUser = {
@@ -58,7 +56,7 @@ class HandleUserForm extends Component {
           first_name: this.state.first_name,
           last_name: this.state.last_name
       }
-       fetch('http://127.0.0.1:8000/api/users/', {
+       fetch('http://localhost:8000/api/users/', {
          method: 'POST',
          headers: {
            'Content-Type': 'application/json'
@@ -68,17 +66,13 @@ class HandleUserForm extends Component {
          .then(res => res.json())
          .then(json => {
            localStorage.setItem('token', json.token);
+           this.props.setToken()
            this.setState({
+             userLoggedIn: true,
              username: json.username
-           })
-         }, this.showPage)
+           }, this.loggedInUser)
+         })
       }
-    }
-
-    showPage = () => {
-      this.setState({
-        showPage: true
-      })
     }
 
     createdUser = () => {
