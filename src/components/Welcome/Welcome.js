@@ -58,13 +58,10 @@ class Welcome extends Component {
   }
 
   render() {
-    // <div>
-    //     <Navbar setToken={() => this.setToken()} hasToken={this.state.hasToken} deleteToken={() => this.deleteToken()}/>
-    //     <Events />
-    //   </div>
-    return this.state.hasToken
-    ? <Redirect to='/events'/>
-    : <Redirect to='/home' />
+    return (
+      <div>
+      </div>
+    )
   }
 }
 

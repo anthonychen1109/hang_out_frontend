@@ -78,29 +78,19 @@ class HandleUserForm extends Component {
       }
     }
 
-    createdUser = () => {
-        this.setState({
-        username: '',
-        password: '',
-        first_name: '',
-        last_name: ''
-        })
-        this.props.handleClose()
-    }
-
     loggedInUser = () => {
-        this.setState({
-        userName: '',
-        password: '',
-        first_name: '',
-        last_name: ''
-        })
         this.props.handleClose()
         this.props.history.push({
           pathname: '/events',
           state: {
             registered: true
           }
+        })
+        this.setState({
+        userName: '',
+        password: '',
+        first_name: '',
+        last_name: ''
         })
     }
 
