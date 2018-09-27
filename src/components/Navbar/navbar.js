@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import { Button, Dimmer, Header } from 'semantic-ui-react'
 import HandleUserForm from '../UserModal/HandleUserForm';
 
@@ -40,7 +40,12 @@ class Navbar extends Component {
 
     handleLogout = () => {
       this.props.deleteToken()
-      return <Redirect to='/home' />
+      this.props.history.push({
+        pathname: '/home',
+        state: {
+          registered: false
+        }
+      })
     }
 
     render() {
@@ -107,4 +112,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+export default withRouter(Navbar);

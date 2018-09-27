@@ -19,8 +19,21 @@ const mapDispatchToProps = (dispatch) => {
 
 class Events extends Component {
 
+  state = {
+    hasToken: false
+  }
+
   componentDidMount() {
     this.props.getEvents()
+  }
+
+  deleteToken = () => {
+    const token = localStorage.removeItem("token")
+    if (token) {
+      this.setState({
+        hasToken: false
+      })
+    }
   }
 
   renderEvents = () => {
@@ -33,7 +46,7 @@ class Events extends Component {
     console.log(this.props);
     return (
       <div>
-        <Navbar hasToken={this.props.location.state.registered}/>
+        <Navbar hasToken={this.props.location.state.registered} deleteToken={this.deleteToken}/>
         <EventsFiller />
         <div className="eventCards">
           {this.renderEvents()}
