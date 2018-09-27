@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Input } from 'semantic-ui-react'
 import UserPage from '../UserPage/UserPage';
+import {withRouter} from "react-router-dom";
 
 class HandleUserForm extends Component {
 
@@ -95,6 +96,12 @@ class HandleUserForm extends Component {
         last_name: ''
         })
         this.props.handleClose()
+        this.props.history.push({
+          pathname: '/events',
+          state: {
+            registered: true
+          }
+        })
     }
 
     render() {
@@ -167,4 +174,4 @@ class HandleUserForm extends Component {
 
 }
 
-export default HandleUserForm
+export default withRouter(HandleUserForm);

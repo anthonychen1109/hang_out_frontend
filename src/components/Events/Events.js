@@ -30,9 +30,10 @@ class Events extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
-        <Navbar />
+        <Navbar hasToken={this.props.location.state.registered}/>
         <EventsFiller />
         <div className="eventCards">
           {this.renderEvents()}
