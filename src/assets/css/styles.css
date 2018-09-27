@@ -162,7 +162,23 @@
   .groupCard .card-body {
     align-items: flex-end;
     display: flex;
-    flex-direction: column; }
+    flex-direction: column;
+    height: 30vh; }
+
+.groupForm {
+  background-color: white;
+  border: 1px solid white;
+  height: 50vh;
+  width: 50vw;
+  padding: 20px; }
+
+.groupFormDetails {
+  text-align: left; }
+  .groupFormDetails h2, .groupFormDetails p {
+    color: black; }
+
+.groupFormDetailsP {
+  font-size: 15px; }
 
 .startOwn {
   background-color: black;

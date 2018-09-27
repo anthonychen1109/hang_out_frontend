@@ -209,9 +209,28 @@
     align-items: flex-end;
     display: flex;
     flex-direction: column;
+    height: 30vh;
   }
 }
 
+.groupForm {
+  background-color: white;
+  border: 1px solid white;
+  height: 50vh;
+  width: 50vw;
+  padding: 20px;
+}
+
+.groupFormDetails {
+  text-align: left;
+  h2, p {
+    color: black;
+  }
+}
+
+.groupFormDetailsP {
+  font-size: 15px;
+}
 // ########### STARTOWN ###########
 .startOwn {
   background-color: black;
