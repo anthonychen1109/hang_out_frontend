@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import CategoryCard from './CategoryCard';
 import StartOwn from '../StartOwn/StartOwn';
 import { getCategory } from './actions';
+import { getGroups } from '../Groups/actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -13,18 +14,25 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCategory: (category) => dispatch(getCategory(category))
+    getCategory: (category) => dispatch(getCategory(category)),
+    getGroups: (category) => dispatch(getGroups(category))
   }
 }
 
 class Categories extends Component {
 
+  handleGroups = (id) => {
+    this.props.getCategory(id)
+    this.props.getGroups(id)
+  }
+
   renderCategories = () => {
     return this.props.categories.categories.map( (category, index) =>
-      <Link key={index} to={`/categories/${category.id}`} onClick={() => this.props.getCategory(category.id)}>
+      <Link key={index} to={`/categories/${category.id}`} onClick={() => this.handleGroups(category.id)}>
         <CategoryCard
-        name={category.name}
-        img={category.cat_img}
+          hasToken={this.props.hasToken}
+          name={category.name}
+          img={category.cat_img}
         />
     </Link>
     )

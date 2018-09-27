@@ -63,7 +63,7 @@ class Home extends Component {
         <Navbar setToken={() => this.setToken()} hasToken={this.state.hasToken}/>
         <hr />
         <Filler setToken={() => this.setToken()}/>
-        <Categories />
+        <Categories hasToken={this.state.hasToken}/>
       </div>
     )
   }

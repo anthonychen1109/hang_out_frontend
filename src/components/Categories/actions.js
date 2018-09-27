@@ -26,6 +26,5 @@ export const getCategories = () => dispatch => {
 export const getCategory = (id) => dispatch => {
   APIAdapter.fetch_category(id).then(category => {
     dispatch(setCategory(category))
-    // console.log(category)
   })
 }

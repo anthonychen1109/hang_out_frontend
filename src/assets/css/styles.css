@@ -126,6 +126,44 @@
     background-color: rgba(0, 0, 0, 0.3);
     height: 30vh; }
 
+.groupsFiller {
+  background-image: url("../images/group.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50vh; }
+  .groupsFiller .overlay {
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 50vh; }
+  .groupsFiller .fillerDiv {
+    left: 50%;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute; }
+    .groupsFiller .fillerDiv h1 {
+      color: white;
+      text-shadow: 0px 0px 3px black; }
+
+.groupDiv {
+  display: flex;
+  margin-bottom: 40px;
+  margin-top: 40px; }
+
+.groupCard {
+  height: 30vh;
+  width: 18rem; }
+  .groupCard .groupCardName, .groupCard .groupCardDescription, .groupCard .groupCardUsers {
+    color: white;
+    text-shadow: 0px 0px 3px black; }
+  .groupCard .overlay {
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 30vh; }
+  .groupCard .card-body {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column; }
+
 .startOwn {
   background-color: black;
   padding: 0px 0px 40px 0px; }
