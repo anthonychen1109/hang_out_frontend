@@ -114,8 +114,16 @@
 
 .eventCards {
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   margin-top: 40px; }
+  .eventCards .eventCardsUserEvents {
+    display: flex;
+    flex-direction: column; }
+    .eventCards .eventCardsUserEvents .eventCardsUserEventsDisplay {
+      display: flex; }
+  .eventCards .eventCardsAllEvents {
+    display: flex; }
 
 .eventCard {
   border-radius: 10px;

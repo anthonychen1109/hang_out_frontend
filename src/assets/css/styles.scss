@@ -150,8 +150,19 @@
 
 .eventCards {
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   margin-top: 40px;
+  .eventCardsUserEvents {
+    display: flex;
+    flex-direction: column;
+    .eventCardsUserEventsDisplay {
+      display: flex;
+    }
+  }
+  .eventCardsAllEvents {
+    display: flex;
+  }
 }
 
 .eventCard {

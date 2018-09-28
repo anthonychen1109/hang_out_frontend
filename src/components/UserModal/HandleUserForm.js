@@ -19,13 +19,11 @@ class HandleUserForm extends Component {
     handleChange = (e) => {
         e.persist()
         this.setState({
-        [e.target.name]: e.target.value
+          [e.target.name]: e.target.value
         })
     }
 
     handleLogin = (e) => {
-
-      console.log('hi');
       e.preventDefault();
       const newUser = {
           username: this.state.username,
@@ -44,8 +42,11 @@ class HandleUserForm extends Component {
           this.props.setToken()
           this.setState({
             userLoggedIn: true,
-            username: json.username
-          }, this.loggedInUser);
+            id: json.user.id,
+            username: json.user.username,
+            first_name: json.user.first_name,
+            last_name: json.user.last_name
+          }, () => this.loggedInUser(this.state));
         });
     }
 
@@ -70,20 +71,19 @@ class HandleUserForm extends Component {
          .then(res => res.json())
          .then(json => {
            localStorage.setItem('token', json.token);
-           debugger
            this.props.setToken()
            this.setState({
              userLoggedIn: true,
-             id: json.id,
-             username: json.username,
-             first_name: json.first_name,
-             last_name: json.last_name
-           }, this.loggedInUser)
+             id: json.user.id,
+             username: json.user.username,
+             first_name: json.user.first_name,
+             last_name: json.user.last_name
+           }, () => this.loggedInUser(this.state))
          })
       }
     }
 
-    loggedInUser = () => {
+    loggedInUser = (user) => {
         this.props.handleClose()
         this.props.history.push({
           pathname: '/events',
@@ -95,15 +95,15 @@ class HandleUserForm extends Component {
             last_name: this.state.last_name
           }
         })
-        this.setState({
-          id: '',
-          username: '',
-          password: '',
-          confirmPassword: '',
-          email: '',
-          first_name: '',
-          last_name: ''
-        })
+        // this.setState({
+        //   id: '',
+        //   username: '',
+        //   password: '',
+        //   confirmPassword: '',
+        //   email: '',
+        //   first_name: '',
+        //   last_name: ''
+        // })
     }
 
     render() {
