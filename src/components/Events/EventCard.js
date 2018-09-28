@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class EventCard extends Component {
   render() {
-    console.log(this.props.event);
     const background = {
       backgroundImage: `url(${this.props.event.event_img})`,
       backgroundRepeat: 'no-repeat',

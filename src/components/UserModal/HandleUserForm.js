@@ -6,6 +6,7 @@ import {withRouter} from "react-router-dom";
 class HandleUserForm extends Component {
 
     state = {
+        id: '',
         username: '',
         password: '',
         confirmPassword: '',
@@ -69,10 +70,14 @@ class HandleUserForm extends Component {
          .then(res => res.json())
          .then(json => {
            localStorage.setItem('token', json.token);
+           debugger
            this.props.setToken()
            this.setState({
              userLoggedIn: true,
-             username: json.username
+             id: json.id,
+             username: json.username,
+             first_name: json.first_name,
+             last_name: json.last_name
            }, this.loggedInUser)
          })
       }
@@ -83,14 +88,21 @@ class HandleUserForm extends Component {
         this.props.history.push({
           pathname: '/events',
           state: {
-            registered: true
+            registered: true,
+            id: this.state.id,
+            username: this.state.username,
+            first_name: this.state.first_name,
+            last_name: this.state.last_name
           }
         })
         this.setState({
-        userName: '',
-        password: '',
-        first_name: '',
-        last_name: ''
+          id: '',
+          username: '',
+          password: '',
+          confirmPassword: '',
+          email: '',
+          first_name: '',
+          last_name: ''
         })
     }
 
@@ -140,7 +152,7 @@ class HandleUserForm extends Component {
 
             <Form.Field>
                 <label><p className="formInputs">Enter Password</p></label>
-                <li>Password must be 8 characters or longer</li>
+                <li className="formInputsPWmsg">Password must be 8 characters or longer</li>
                 <Input type='password' placeholder="Password" name="password" onChange={this.handleChange}/>
             </Form.Field>
 

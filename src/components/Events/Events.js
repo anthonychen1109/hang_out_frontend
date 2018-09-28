@@ -43,7 +43,6 @@ class Events extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <Navbar hasToken={this.props.location.state.registered} deleteToken={this.deleteToken}/>

@@ -90,6 +90,9 @@
   .registerForm h1, .loginForm h1 {
     color: black; }
 
+.formInputsPWmsg {
+  color: black; }
+
 .eventsFiller {
   background-image: url("../images/events_bg.jpg");
   background-position: center;
