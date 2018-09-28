@@ -19,7 +19,7 @@ const routes = (
     <Provider store={store}>
         <BrowserRouter>
             <Switch>
-                <Route exact path="/" component={Splash} />>
+                <Route exact path="/" component={Splash} />
                 <Route path="/welcome" component={Welcome} />
                 <Route path="/categories/:id" component={Group} />
                 <Route path="/events" component={Events} />

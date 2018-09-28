@@ -40,7 +40,7 @@ class Events extends Component {
   }
 
   renderUserEvents = () => {
-    console.log('hit renderUserEvents', this.props);
+    console.log('hit renderUserEvents', this.props.userInfo);
     if (this.props.userInfo.user) {
       console.log('true');
       if (this.props.userInfo.user.events.length === 0) {
@@ -78,7 +78,12 @@ class Events extends Component {
             </div>
           </div>
           <div className="eventCardsAllEvents">
-            {this.renderEvents()}
+            <div className="eventCardsAllEventsHeader">
+              <h1>All Events</h1>
+            </div>
+            <div className="eventCardsAllEventsDisplay">
+              {this.renderEvents()}
+            </div>
           </div>
         </div>
       </div>

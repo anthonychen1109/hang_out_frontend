@@ -120,10 +120,23 @@
   .eventCards .eventCardsUserEvents {
     display: flex;
     flex-direction: column; }
+    .eventCards .eventCardsUserEvents .eventCardsUserEventsHeader {
+      text-align: center; }
     .eventCards .eventCardsUserEvents .eventCardsUserEventsDisplay {
-      display: flex; }
+      display: flex;
+      justify-content: space-evenly;
+      margin-bottom: 80px;
+      padding-top: 40px; }
   .eventCards .eventCardsAllEvents {
-    display: flex; }
+    display: flex;
+    flex-direction: column; }
+  .eventCards .eventCardsAllEventsHeader {
+    text-align: center; }
+  .eventCards .eventCardsAllEventsDisplay {
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 40px;
+    padding-top: 40px; }
 
 .eventCard {
   border-radius: 10px;

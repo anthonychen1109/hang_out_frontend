@@ -156,12 +156,28 @@
   .eventCardsUserEvents {
     display: flex;
     flex-direction: column;
+    .eventCardsUserEventsHeader {
+      text-align: center;
+    }
     .eventCardsUserEventsDisplay {
       display: flex;
+      justify-content: space-evenly;
+      margin-bottom: 80px;
+      padding-top: 40px;
     }
   }
   .eventCardsAllEvents {
     display: flex;
+    flex-direction: column;
+  }
+  .eventCardsAllEventsHeader {
+    text-align: center;
+  }
+  .eventCardsAllEventsDisplay {
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 40px;
+    padding-top: 40px;
   }
 }
 
