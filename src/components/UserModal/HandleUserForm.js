@@ -76,13 +76,26 @@ class HandleUserForm extends Component {
            this.props.setToken()
            this.setState({
              userLoggedIn: true,
-             id: json.user.id,
-             username: json.user.username,
-             first_name: json.user.first_name,
-             last_name: json.user.last_name
-           }, () => this.loggedInUser(this.state))
+             username: json.username,
+             first_name: json.first_name,
+             last_name: json.last_name
+           }, () => this.signedUpUser(newUser))
          })
       }
+    }
+
+    signedUpUser = (user) => {
+      this.props.handleClose()
+      this.props.history.push({
+        pathname: '/home',
+        state: {
+          registered: true,
+          id: this.state.id,
+          username: this.state.username,
+          first_name: this.state.first_name,
+          last_name: this.state.last_name
+        }
+      })
     }
 
     loggedInUser = (user) => {
