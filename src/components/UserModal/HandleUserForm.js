@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Input } from 'semantic-ui-react'
+import { Form, Input, Button } from 'semantic-ui-react'
 import UserPage from '../UserPage/UserPage';
 import {withRouter} from "react-router-dom";
 
@@ -87,7 +87,7 @@ class HandleUserForm extends Component {
     signedUpUser = (user) => {
       this.props.handleClose()
       this.props.history.push({
-        pathname: '/home',
+        pathname: '/welcome',
         state: {
           registered: true,
           id: this.state.id,
@@ -110,15 +110,6 @@ class HandleUserForm extends Component {
             last_name: this.state.last_name
           }
         })
-        // this.setState({
-        //   id: '',
-        //   username: '',
-        //   password: '',
-        //   confirmPassword: '',
-        //   email: '',
-        //   first_name: '',
-        //   last_name: ''
-        // })
     }
 
     render() {
@@ -137,13 +128,13 @@ class HandleUserForm extends Component {
             </Form.Field>
 
             <div className='ui buttons'>
-                <button className='ui button' onClick={this.props.handleClose}>
+                <Button type='submit' className='ui button' onClick={this.props.handleClose}>
                 Cancel
-                </button>
+              </Button>
                 <div />
-                <button type='submit' className='ui positive button'>
+                <Button type='submit' className='ui positive button'>
                 Submit
-                </button>
+              </Button>
             </div>
             </Form>
 

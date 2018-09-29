@@ -19,3 +19,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+navbar from home is broken (refactor using redux to handle nav states?)
+user permissions is set to allow any (use user authorization to see data?)
+enter button on form dimmer is broken (semantic UI thing ------- come back to it if time permits)
+categories/:id button styling is messed up

@@ -143,6 +143,8 @@
       position: absolute;
       h1 {
           color: white;
+          font-family: conformity;
+          font-size: 40px;
           text-shadow: 0px 0px 3px black;
       }
   }
@@ -214,6 +216,8 @@
       position: absolute;
       h1 {
           color: white;
+          font-family: conformity;
+          font-size: 40px;
           text-shadow: 0px 0px 3px black;
       }
   }
@@ -262,6 +266,38 @@
 .groupFormDetailsP {
   font-size: 15px;
 }
+
+// ########### WELCOME ###########
+.welcomeFiller {
+  background-image: url('../images/welcome.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50vh;
+  .overlay {
+      background-color: rgba(0,0,0,0.3);
+      height: 50vh;
+  }
+  .fillerDiv {
+      left: 50%;
+      text-align: center;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+      h1 {
+          color: white;
+          text-shadow: 0px 0px 3px black;
+      }
+  }
+  .welcomeName {
+    font-family: conformity;
+    font-size: 40px;
+    h1 {
+      text-shadow: 0px 0px 3px black;
+    }
+  }
+}
+
 // ########### STARTOWN ###########
 .startOwn {
   background-color: black;

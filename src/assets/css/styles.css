@@ -110,6 +110,8 @@
     position: absolute; }
     .eventsFiller .fillerDiv h1 {
       color: white;
+      font-family: conformity;
+      font-size: 40px;
       text-shadow: 0px 0px 3px black; }
 
 .eventCards {
@@ -167,6 +169,8 @@
     position: absolute; }
     .groupsFiller .fillerDiv h1 {
       color: white;
+      font-family: conformity;
+      font-size: 40px;
       text-shadow: 0px 0px 3px black; }
 
 .groupDiv {
@@ -203,6 +207,30 @@
 
 .groupFormDetailsP {
   font-size: 15px; }
+
+.welcomeFiller {
+  background-image: url("../images/welcome.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50vh; }
+  .welcomeFiller .overlay {
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 50vh; }
+  .welcomeFiller .fillerDiv {
+    left: 50%;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute; }
+    .welcomeFiller .fillerDiv h1 {
+      color: white;
+      text-shadow: 0px 0px 3px black; }
+  .welcomeFiller .welcomeName {
+    font-family: conformity;
+    font-size: 40px; }
+    .welcomeFiller .welcomeName h1 {
+      text-shadow: 0px 0px 3px black; }
 
 .startOwn {
   background-color: black;

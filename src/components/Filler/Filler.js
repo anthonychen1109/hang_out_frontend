@@ -23,12 +23,15 @@ class Filler extends Component {
                 <div className="overlay">
                     <div className="fillerDiv">
                         <h1>Do more of what you love with Hang Outs</h1>
-                        <UserModal
+                        {
+                          !this.props.hasToken &&
+                          <UserModal
                             setToken={this.props.setToken}
                             registered={this.state.registered}
                             register={this.register}
                             login={this.login}
-                        />
+                            />
+                        }
                     </div>
                 </div>
             </div>

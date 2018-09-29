@@ -60,9 +60,12 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Navbar setToken={() => this.setToken()} hasToken={this.state.hasToken}/>
+        <Navbar
+          setToken={this.setToken} hasToken={this.state.hasToken}
+          deleteToken={this.deleteToken}
+        />
         <hr />
-        <Filler setToken={() => this.setToken()}/>
+        <Filler setToken={() => this.setToken()} hasToken={this.state.hasToken}/>
         <Categories hasToken={this.state.hasToken}/>
       </div>
     )
