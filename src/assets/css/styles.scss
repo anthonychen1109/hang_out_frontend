@@ -104,9 +104,6 @@
     height: 30vh;
     overflow: hidden;
   }
-  .card-body {
-    max-height: 10vh;
-  }
 }
 
 // ########### USERFORM ###########
@@ -240,7 +237,6 @@
     align-items: flex-end;
     display: flex;
     flex-direction: column;
-    height: 30vh;
   }
 }
 

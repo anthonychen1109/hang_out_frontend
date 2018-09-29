@@ -79,8 +79,6 @@
   .card .card-img-top {
     height: 30vh;
     overflow: hidden; }
-  .card .card-body {
-    max-height: 10vh; }
 
 .registerForm, .loginForm {
   background-color: white;
@@ -186,8 +184,7 @@
   .groupCard .card-body {
     align-items: flex-end;
     display: flex;
-    flex-direction: column;
-    height: 30vh; }
+    flex-direction: column; }
 
 .groupForm {
   background-color: white;
