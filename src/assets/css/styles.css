@@ -45,7 +45,7 @@
   margin-right: 10px; }
 
 .filler {
-  background-image: url("../images/navbar_meetup.jpg");
+  background-image: url("../images/giphy.gif");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -77,7 +77,7 @@
   margin: 10px;
   width: 25rem; }
   .card .card-img-top {
-    max-height: 30vh;
+    height: 30vh;
     overflow: hidden; }
   .card .card-body {
     max-height: 10vh; }
@@ -110,8 +110,6 @@
     position: absolute; }
     .eventsFiller .fillerDiv h1 {
       color: white;
-      font-family: conformity;
-      font-size: 40px;
       text-shadow: 0px 0px 3px black; }
 
 .eventCards {
@@ -169,8 +167,6 @@
     position: absolute; }
     .groupsFiller .fillerDiv h1 {
       color: white;
-      font-family: conformity;
-      font-size: 40px;
       text-shadow: 0px 0px 3px black; }
 
 .groupDiv {
