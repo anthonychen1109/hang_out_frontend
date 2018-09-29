@@ -41,7 +41,7 @@ class Navbar extends Component {
     handleLogout = () => {
       this.props.deleteToken()
       this.props.history.push({
-        pathname: '/home',
+        pathname: '/',
         state: {
           registered: false
         }
