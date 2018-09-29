@@ -99,6 +99,7 @@
 // ########### CARD ###########
 .card {
   margin: 10px;
+  overflow: hidden;
   width: 25rem;
   .card-img-top {
     height: 30vh;
