@@ -4,6 +4,7 @@ import { getGroup } from './actions';
 import Navbar from '../Navbar/Navbar';
 import EventCard from '../Events/EventCard';
 import StartOwn from '../StartOwn/StartOwn';
+import GroupInfoMember from './GroupInfoMember';
 import Time from 'react-time';
 
 const mapStateToProps = (state) => {
@@ -51,6 +52,19 @@ class GroupInfo extends Component {
     }
   }
 
+  renderMembers = () => {
+    if (this.props.group.group.num_users) {
+      if (this.props.group.group.num_users.length === 0) {
+        return <p>Currently no members</p>
+      } else if (this.props.group.group.num_users === 1) {
+        return <GroupInfoMember member={this.props.group.group.users[0]}/>
+      }
+      return this.props.group.group.num_users.map(member => {
+        return <GroupInfoMember member={member}/>
+      })
+    }
+  }
+
   render() {
     let now = new Date()
     const pastEvents = []
@@ -66,7 +80,7 @@ class GroupInfo extends Component {
         }
       })
     }
-    // console.log(this.props.group.group.events);
+    console.log(this.props.group.group.events);
     return (
       <div>
         <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>
@@ -84,8 +98,16 @@ class GroupInfo extends Component {
         <hr/>
         <div className="groupInfoAbout container">
           <div className="groupInfoLeft">
-            <h1>What we're about</h1>
-            <p>{this.props.group.group.description}</p>
+            <div>
+              <h1>What we're about</h1>
+              <p>{this.props.group.group.description}</p>
+            </div>
+            <div className="groupInfoLeftMembers">
+              <h1>Members ( {this.props.group.group.num_users})</h1>
+              <div className="groupInfoLeftMembersDisplay">
+                {this.renderMembers()}
+              </div>
+            </div>
           </div>
           <div className="groupInfoRight">
             <h1>Upcoming Events</h1>

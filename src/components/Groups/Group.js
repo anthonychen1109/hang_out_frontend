@@ -33,7 +33,6 @@ class Group extends Component {
 
   setToken = () => {
     const token = localStorage.getItem("token")
-    console.log("set token", token);
     if (token) {
       this.setState({
         hasToken: true
@@ -51,7 +50,6 @@ class Group extends Component {
   }
 
   render() {
-    console.log("group", this.state.hasToken);
     return (
       <div>
         <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>

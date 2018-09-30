@@ -291,6 +291,27 @@
   }
 }
 
+.groupInfoLeft {
+  margin-right: 80px;
+  .groupInfoLeftMembers {
+    margin-top: 40px;
+  }
+}
+
+.groupInfoLeftMembersDisplay {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.groupInfoMemberCard {
+  border-radius: 10px;
+  width: 10vw;
+}
+
+.groupInfoMemberAvatar {
+  border-radius: 50%;
+}
+
 // ########### WELCOME ###########
 .welcomeFiller {
   background-image: url('../images/welcome.jpg');

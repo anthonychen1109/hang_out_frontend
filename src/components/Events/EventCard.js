@@ -13,8 +13,14 @@ class EventCard extends Component {
           <h1>{this.props.event.name}</h1>
           {
             this.props.passed
-            ? <h3>{this.props.event.users.length} user(s) went</h3>
-            : <h3>{this.props.event.users.length} user(s) attending</h3>
+            ?
+              this.props.event.users.length > 1
+              ? <h3>{this.props.event.users.length} users went</h3>
+              : <h3>{this.props.event.users.length} user went</h3>
+            :
+              this.props.event.users.length > 1
+              ? <h3>{this.props.event.users.length} users attending</h3>
+              : <h3>{this.props.event.users.length} user attending</h3>
           }
         </div>
       </div>
