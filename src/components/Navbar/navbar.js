@@ -49,7 +49,6 @@ class Navbar extends Component {
     }
 
     render() {
-      console.log("navbar", this.props.hasToken);
         const { active } = this.state
         return (
           this.props.hasToken || this.props.registered
