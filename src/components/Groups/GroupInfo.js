@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getGroup } from './actions';
 import Navbar from '../Navbar/Navbar';
 import EventCard from '../Events/EventCard';
@@ -122,7 +123,7 @@ class GroupInfo extends Component {
             <div>
               {
                 pastEvents.length > 0
-                ? pastEvents.map( (event, index) => <EventCard key={index} event={event} passed={true}/>)
+                ? pastEvents.map( (event, index) => <Link key={index} to={`/events/${event.id}`}><EventCard event={event} passed={true}/></Link>)
                 : <p>No Events</p>
               }
             </div>
