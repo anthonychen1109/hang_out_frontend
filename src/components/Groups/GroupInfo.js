@@ -6,6 +6,7 @@ import Navbar from '../Navbar/Navbar';
 import EventCard from '../Events/EventCard';
 import StartOwn from '../StartOwn/StartOwn';
 import GroupInfoMember from './GroupInfoMember';
+import GroupPhotoModal from './GroupPhotoModal';
 import Time from 'react-time';
 
 const mapStateToProps = (state) => {
@@ -66,6 +67,20 @@ class GroupInfo extends Component {
     }
   }
 
+  groupImages = () => {
+    if (this.props.group.group.events) {
+      if (this.props.group.group.events === 0) {
+        return <p>No Events</p>
+      } else if (this.props.group.group.events.length === 1) {
+        return <div className="photoModal"><GroupPhotoModal image={this.props.group.group.events[0].event_img}/></div>
+      } else if (this.props.group.group.events.length > 1) {
+        return this.props.group.group.events.map( (event, index) => {
+          return <div className="photoModal"><GroupPhotoModal image={event.event_img}/></div>
+        })
+      }
+    }
+  }
+
   render() {
     let now = new Date()
     const pastEvents = []
@@ -81,6 +96,9 @@ class GroupInfo extends Component {
         }
       })
     }
+    if (this.props.group.group.events) {
+      console.log(this.props.group.group.events[0].event_img);
+    }
     console.log(this.props.group.group.events);
     return (
       <div>
@@ -92,7 +110,11 @@ class GroupInfo extends Component {
           </div>
           <div className="groupInfoContent">
             <h1>{this.props.group.group.name}</h1>
-            <p>{this.props.group.group.num_users} members</p>
+            {
+              this.props.group.group.num_users > 1
+              ? <p>{this.props.group.group.num_users} members</p>
+              : <p>{this.props.group.group.num_users} member</p>
+            }
             <p>organized by {this.props.group.group.organizer_name}</p>
           </div>
         </div>
@@ -127,6 +149,14 @@ class GroupInfo extends Component {
                 : <p>No Events</p>
               }
             </div>
+          </div>
+        </div>
+        <div className="groupInfoPhotos container">
+          <div>
+            <h1>Photos</h1>
+          </div>
+          <div className="groupInfoImage">
+            {this.groupImages()}
           </div>
         </div>
         <StartOwn />
