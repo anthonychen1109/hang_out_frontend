@@ -216,7 +216,14 @@
 
 .groupInfoAbout {
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  padding-bottom: 40px;
+  padding-top: 40px; }
+
+.groupInfoRight {
+  max-width: 50%; }
+  .groupInfoRight .eventCard {
+    margin-top: 10px; }
 
 .welcomeFiller {
   background-image: url("../images/welcome.jpg");

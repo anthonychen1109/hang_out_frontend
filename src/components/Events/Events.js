@@ -22,12 +22,21 @@ const mapDispatchToProps = (dispatch) => {
 class Events extends Component {
 
   state = {
-    hasToken: false
+    hasToken: ''
   }
 
   componentDidMount() {
     this.props.getEvents()
     this.props.getUserInfo(this.props.location.state.id)
+  }
+
+  setToken = () => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      this.setState({
+        hasToken: true
+      })
+    }
   }
 
   deleteToken = () => {
@@ -40,9 +49,7 @@ class Events extends Component {
   }
 
   renderUserEvents = () => {
-    console.log('hit renderUserEvents', this.props.userInfo);
     if (this.props.userInfo.user) {
-      console.log('true');
       if (this.props.userInfo.user.events.length === 0) {
         return <div>You currently have no events. Please join one</div>
       } else if (this.props.userInfo.user.events.length === 1) {
@@ -64,7 +71,7 @@ class Events extends Component {
   render() {
     return (
       <div>
-        <Navbar hasToken={this.props.location.state.registered} deleteToken={this.deleteToken}/>
+        <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken} registered={this.props.location.state.registered}/>
         <EventsFiller />
         <div className="eventCards">
           <div className="eventCardsUserEvents">

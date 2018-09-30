@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getGroup } from './actions';
 import Navbar from '../Navbar/Navbar';
+import EventCard from '../Events/EventCard';
+import StartOwn from '../StartOwn/StartOwn';
+import Time from 'react-time';
 
 const mapStateToProps = (state) => {
   return {
@@ -18,6 +21,10 @@ const mapDispatchToProps = (dispatch) => {
 
 class GroupInfo extends Component {
 
+  state = {
+    hasToken: ''
+  }
+
   componentDidMount() {
     this.props.getGroup(this.props.location.state.id)
   }
@@ -26,11 +33,43 @@ class GroupInfo extends Component {
     return this.props.group.name
   }
 
+  setToken = () => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      this.setState({
+        hasToken: true
+      })
+    }
+  }
+
+  deleteToken = () => {
+    const token = localStorage.removeItem("token")
+    if (token) {
+      this.setState({
+        hasToken: false
+      })
+    }
+  }
+
   render() {
-    console.log(this.props.group.group.group_img);
+    let now = new Date()
+    const pastEvents = []
+    const upcomingEvents = []
+    if (this.props.group.group.events) {
+      this.props.group.group.events.map(event => {
+        const date = event.date.split("T")
+        const newDate = new Date(`${date[0]} ${date[1]}`)
+        if (newDate < now) {
+          pastEvents.push(event)
+        } else {
+          upcomingEvents.push(event)
+        }
+      })
+    }
+    // console.log(this.props.group.group.events);
     return (
       <div>
-        <Navbar/>
+        <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>
         <hr/>
         <div className="groupInfoFiller container">
           <div className="groupInfoImage">
@@ -49,12 +88,25 @@ class GroupInfo extends Component {
             <p>{this.props.group.group.description}</p>
           </div>
           <div className="groupInfoRight">
-            <h1>Upcoming Hang Outs</h1>
+            <h1>Upcoming Events</h1>
             <div>
-
+              {
+                upcomingEvents.length > 0
+                ? upcomingEvents.map( (event, index) => <EventCard key={index} event={event} passed={false}/>)
+                : <p>No Events</p>
+              }
+            </div>
+            <h1>Past Events</h1>
+            <div>
+              {
+                pastEvents.length > 0
+                ? pastEvents.map( (event, index) => <EventCard key={index} event={event} passed={true}/>)
+                : <p>No Events</p>
+              }
             </div>
           </div>
         </div>
+        <StartOwn />
       </div>
     )
   }
