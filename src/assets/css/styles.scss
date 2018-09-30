@@ -260,6 +260,28 @@
   font-size: 15px;
 }
 
+// ########### GROUPINFO ###########
+.groupInfoFiller {
+  display: flex;
+  height: 40vh;
+  justify-content: space-between;
+  .groupInfoImage {
+    margin-right: 50px;
+    max-width: 50%;
+  }
+  .groupInfoImage img {
+    height: 40vh;
+  }
+  .groupInfoContent {
+    max-width: 50%;
+  }
+}
+
+.groupInfoAbout {
+  display: flex;
+  justify-content: space-between;
+}
+
 // ########### WELCOME ###########
 .welcomeFiller {
   background-image: url('../images/welcome.jpg');
