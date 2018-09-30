@@ -6,9 +6,11 @@ const GroupReducer = (state={group:{}}, action) => {
     console.log(action.payload.group);
       return {
         ...state,
-        action.payload.group
+        group: action.payload.group
       }
     default:
       return state;
   }
 }
+
+export default GroupReducer;

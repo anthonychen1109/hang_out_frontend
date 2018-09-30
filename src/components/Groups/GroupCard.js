@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Button, Dimmer, Header } from 'semantic-ui-react'
 import HandleGroupForm from './HandleGroupForm';
 
@@ -6,12 +7,13 @@ class GroupCard extends Component {
 
   state = {}
 
-  handleOpen = () => {
-      this.setState({ active: true })
-  }
-
-  handleClose = () => {
-      this.setState({ active: false })
+  handleGroup = (id) => {
+    this.props.history.push({
+      pathname: `/group/${id}`,
+      state: {
+        id: id
+      }
+    })
   }
 
   render() {
@@ -30,19 +32,9 @@ class GroupCard extends Component {
               <Button
                   className="groupCardBtn"
                   inverted color="blue"
-                  onClick={this.handleOpen}>
+                  onClick={() => this.handleGroup(this.props.group.id)}>
                   See Details
               </Button>
-              <Dimmer active={active} onClickOutside={this.handleClose} page>
-              <Header as='h2' icon inverted>
-                  <HandleGroupForm
-                    background={this.props.group.group_img}
-                    name={this.props.group.name}
-                    numUsers={this.props.group.num_users}
-                    description={this.props.group.description}
-                    />
-              </Header>
-              </Dimmer>
           </div>
         </div>
       </div>
@@ -50,4 +42,4 @@ class GroupCard extends Component {
   }
 }
 
-export default GroupCard;
+export default withRouter(GroupCard);

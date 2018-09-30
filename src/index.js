@@ -9,6 +9,7 @@ import 'semantic-ui-css/semantic.min.css';
 import Splash from './components/Splash/Splash';
 import Home from './components/Home/Home';
 import Group from './components/Groups/Group';
+import GroupInfo from './components/Groups/GroupInfo';
 import Events from './components/Events/Events';
 import Welcome from './components/Welcome/Welcome';
 import reducer from './reducers/root_reducer';
@@ -24,6 +25,7 @@ const routes = (
                 <Route path="/categories/:id" component={Group} />
                 <Route path="/events" component={Events} />
                 <Route path="/home" component={Home} />
+                <Route path="/group/:id" component={GroupInfo} />
             </Switch>
         </BrowserRouter>
     </Provider>
