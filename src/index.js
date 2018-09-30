@@ -12,6 +12,7 @@ import Group from './components/Groups/Group';
 import GroupInfo from './components/Groups/GroupInfo';
 import Events from './components/Events/Events';
 import Welcome from './components/Welcome/Welcome';
+import EventDetail from './components/Events/EventDetail';
 import reducer from './reducers/root_reducer';
 
 const store = createStore(reducer, applyMiddleware(thunk))
@@ -23,6 +24,7 @@ const routes = (
                 <Route exact path="/" component={Splash} />
                 <Route path="/welcome" component={Welcome} />
                 <Route path="/categories/:id" component={Group} />
+                <Route path="/events/:id" component={EventDetail} />
                 <Route path="/events" component={Events} />
                 <Route path="/home" component={Home} />
                 <Route path="/group/:id" component={GroupInfo} />
