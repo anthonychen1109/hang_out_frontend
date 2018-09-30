@@ -202,6 +202,22 @@
 .groupFormDetailsP {
   font-size: 15px; }
 
+.groupInfoPhotos {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 80px; }
+  .groupInfoPhotos .groupInfoImage {
+    display: flex;
+    flex-wrap: wrap; }
+
+.groupEventImgs {
+  margin: 10px;
+  max-height: 20vh;
+  max-width: 20vw; }
+
+.photoModal :hover {
+  cursor: pointer; }
+
 .groupInfoFiller {
   display: flex;
   height: 40vh;
