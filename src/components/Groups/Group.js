@@ -15,6 +15,10 @@ const mapStateToProps = (state) => {
 
 class Group extends Component {
 
+  state = {
+    hasToken: ''
+  }
+
   renderGroups = () => {
     if (this.props.groups.groups.length === 0) {
       return <div><span className="navbarNewGroup"><Link to='/new_group'>Start a new group</Link></span></div>
@@ -27,12 +31,30 @@ class Group extends Component {
     }
   }
 
+  setToken = () => {
+    const token = localStorage.getItem("token")
+    console.log("set token", token);
+    if (token) {
+      this.setState({
+        hasToken: true
+      })
+    }
+  }
 
+  deleteToken = () => {
+    const token = localStorage.removeItem("token")
+    if (token) {
+      this.setState({
+        hasToken: false
+      })
+    }
+  }
 
   render() {
+    console.log("group", this.state.hasToken);
     return (
       <div>
-        <Navbar />
+        <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>
         <hr />
         <GroupFiller />
         <div className="groupDiv container">

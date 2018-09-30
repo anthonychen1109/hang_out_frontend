@@ -3,7 +3,7 @@ import UserModal from '../UserModal/Usermodal';
 
 class Filler extends Component {
     state = {
-        registered: false
+        registered: ''
     }
 
     register = () => {
@@ -20,7 +20,7 @@ class Filler extends Component {
     render() {
         return (
             <div className="filler">
-                <div className="overlay">    
+                <div className="overlay">
                     <div className="fillerDiv">
                         <h1>Do more of what you love with Hang Outs</h1>
                         {

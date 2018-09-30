@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
 class Home extends Component {
 
   state = {
-    hasToken: false
+    hasToken: ''
   }
 
   componentDidMount() {
