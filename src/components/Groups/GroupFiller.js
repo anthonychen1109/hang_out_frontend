@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import UserModal from '../UserModal/Usermodal';
 
 class GroupFiller extends Component {
     render() {

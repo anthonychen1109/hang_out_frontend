@@ -123,6 +123,7 @@
       text-align: center; }
     .eventCards .eventCardsUserEvents .eventCardsUserEventsDisplay {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-evenly;
       margin-bottom: 80px;
       padding-top: 40px; }
@@ -133,6 +134,7 @@
     text-align: center; }
   .eventCards .eventCardsAllEventsDisplay {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     padding-bottom: 40px;
     padding-top: 40px; }
@@ -148,6 +150,11 @@
   .eventCard .overlay {
     background-color: rgba(0, 0, 0, 0.3);
     height: 30vh; }
+    .eventCard .overlay h1 {
+      padding: 10px; }
+
+.eventCardDisplay {
+  margin-top: 10px; }
 
 .eventDetailDateTitle {
   display: flex; }
@@ -224,6 +231,40 @@
 
 .photoModal :hover {
   cursor: pointer; }
+
+.upcomingEventsCards, .pastEventsCards {
+  max-height: 50vh;
+  overflow: scroll; }
+
+.createForm {
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  padding-bottom: 40px;
+  padding-top: 40px; }
+  .createForm .createFormHeader {
+    text-align: center; }
+  .createForm .createFormForm {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px; }
+
+.stepOne {
+  display: flex;
+  margin-top: 20px; }
+  .stepOne .stepOneHometown {
+    margin-left: 10px; }
+    .stepOne .stepOneHometown .nextBtn {
+      margin-top: 10px; }
+
+.formImage {
+  border-radius: 50%;
+  max-height: 50px;
+  max-width: 50px; }
 
 .groupInfoFiller {
   display: flex;

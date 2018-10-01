@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class GroupInfoMember extends Component {
   render() {
-    console.log(this.props.member);
     return (
       <div className="groupInfoMemberCard">
         <div>

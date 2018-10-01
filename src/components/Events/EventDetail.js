@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import { getEvents, getUserInfo } from './actions';
 import { getGroup } from '../Groups/actions';
 import { getCategory } from '../Categories/actions';
+import { getEvent } from '../Events/actions';
 import Navbar from '../Navbar/Navbar';
 import StartOwn from '../StartOwn/StartOwn';
 
 const mapStateToProps = (state) => {
   return {
     // events: state.events,
-    group: state.group
+    group: state.group,
+    curr_event: state.curr_event
     // userInfo: state.userInfo
   }
 }
@@ -17,7 +19,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     // getEvents: () => dispatch(getEvents()),
-    getGroup: (id) => dispatch(getGroup(id))
+    getGroup: (id) => dispatch(getGroup(id)),
+    getEvent: (id) => dispatch(getEvent(id))
     // getUserInfo: (id) => dispatch(getUserInfo(id))
   }
 }
@@ -30,7 +33,7 @@ class EventDetail extends Component {
 
   componentDidMount() {
     // this.props.getEvents()
-    this.props.getGroup(this.props.location.state.id)
+    this.props.getEvent(this.props.location.state.id)
   }
 
   setToken = () => {
