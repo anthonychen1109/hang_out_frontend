@@ -193,6 +193,15 @@
   }
 }
 
+.eventDetailDateTitle {
+  display: flex;
+}
+
+.eventDetailDetails {
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+
 // ########### GROUP ###########
 .groupsFiller {
   background-image: url('../images/group.jpeg');
@@ -308,6 +317,11 @@
   max-width: 50%;
   .eventCard {
     margin-top: 10px;
+  }
+  .groupInfoRightEvent {
+    :hover {
+      cursor: pointer;
+    }
   }
 }
 

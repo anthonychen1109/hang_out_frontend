@@ -149,6 +149,13 @@
     background-color: rgba(0, 0, 0, 0.3);
     height: 30vh; }
 
+.eventDetailDateTitle {
+  display: flex; }
+
+.eventDetailDetails {
+  padding-bottom: 40px;
+  padding-top: 40px; }
+
 .groupsFiller {
   background-image: url("../images/group.jpeg");
   background-position: center;
@@ -240,6 +247,8 @@
   max-width: 50%; }
   .groupInfoRight .eventCard {
     margin-top: 10px; }
+  .groupInfoRight .groupInfoRightEvent :hover {
+    cursor: pointer; }
 
 .groupInfoLeft {
   margin-right: 80px; }
