@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Button, Dimmer, Header } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import HandleGroupForm from './HandleGroupForm';
 
 class GroupCard extends Component {

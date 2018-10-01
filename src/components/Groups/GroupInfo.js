@@ -75,13 +75,14 @@ class GroupInfo extends Component {
         return <div className="photoModal"><GroupPhotoModal image={this.props.group.group.events[0].event_img}/></div>
       } else if (this.props.group.group.events.length > 1) {
         return this.props.group.group.events.map( (event, index) => {
-          return <div className="photoModal"><GroupPhotoModal image={event.event_img}/></div>
+          return <div key={index} className="photoModal"><GroupPhotoModal image={event.event_img}/></div>
         })
       }
     }
   }
 
   displayEvent = (id) => {
+    console.log("here", id);
     this.props.history.push({
       pathname: `/events/${id}`,
       state: {
@@ -143,20 +144,23 @@ class GroupInfo extends Component {
           </div>
           <div className="groupInfoRight">
             <h1>Upcoming Events ({upcomingEvents.length})</h1>
-            <div>
+            <div className="upcomingEventsCards">
               {
                 upcomingEvents.length > 0
-                ? upcomingEvents.map( (event, index) => <EventCard key={index} event={event} passed={false}/>)
+                ? upcomingEvents.map( (event, index) =>
+                <div className="groupInfoRightEvent" key={index} onClick={() => this.displayEvent(event.id)}>
+                  <EventCard event={event} eventPassed={false}/>
+                </div>)
                 : <p>No Events</p>
               }
             </div>
             <h1>Past Events ({pastEvents.length})</h1>
-            <div>
+            <div className="pastEventsCards">
               {
                 pastEvents.length > 0
                 ? pastEvents.map( (event, index) =>
                 <div className="groupInfoRightEvent" key={index} onClick={() => this.displayEvent(event.id)}>
-                  <EventCard event={event} passed={true}/>
+                  <EventCard event={event} eventPassed={true}/>
               </div>)
                 : <p>No Events</p>
               }

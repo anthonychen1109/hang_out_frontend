@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom'
 import { getCategories } from '../Categories/actions';
 import Categories from '../Categories/Categories';
 import Navbar from '../Navbar/Navbar';
 import WelcomeFiller from './WelcomeFiller';
-import Events from '../Events/Events';
 
 const mapStateToProps = (state) => {
     return {

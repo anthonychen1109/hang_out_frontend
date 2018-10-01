@@ -12,7 +12,7 @@ class EventCard extends Component {
         <div className="overlay">
           <h1>{this.props.event.name}</h1>
           {
-            this.props.passed
+            this.props.eventPassed
             ?
               this.props.event.users.length > 1
               ? <h3>{this.props.event.users.length} users went</h3>

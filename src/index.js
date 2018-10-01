@@ -13,6 +13,7 @@ import GroupInfo from './components/Groups/GroupInfo';
 import Events from './components/Events/Events';
 import Welcome from './components/Welcome/Welcome';
 import EventDetail from './components/Events/EventDetail';
+import CreateGroup from './components/Groups/CreateGroup';
 import reducer from './reducers/root_reducer';
 
 const store = createStore(reducer, applyMiddleware(thunk))
@@ -28,6 +29,7 @@ const routes = (
                 <Route path="/events" component={Events} />
                 <Route path="/home" component={Home} />
                 <Route path="/group/:id" component={GroupInfo} />
+                <Route path='/new_group' component={CreateGroup} />
             </Switch>
         </BrowserRouter>
     </Provider>

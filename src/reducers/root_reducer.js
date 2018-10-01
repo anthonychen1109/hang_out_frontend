@@ -5,6 +5,7 @@ import EventsReducer from './fetch_events';
 import GroupsReducer from './fetch_groups';
 import UsersReducer from './fetch_user';
 import GroupReducer from './fetch_group';
+import EventReducer from './fetch_event';
 
 const rootReducer = combineReducers({
     categories: CategoriesReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     events: EventsReducer,
     groups: GroupsReducer,
     userInfo: UsersReducer,
-    group: GroupReducer
+    group: GroupReducer,
+    curr_event: EventReducer
 })
 
 export default rootReducer;

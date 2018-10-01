@@ -56,7 +56,7 @@ class Events extends Component {
         return <EventCard event={this.props.userInfo.user.events[0]} />
       } else {
         return this.props.userInfo.user.events.map( (event, index) => {
-          return <EventCard key={index} event={event} />
+          return <div key={index} className="eventCardDisplay"><EventCard event={event} /></div>
         })
       }
     }
@@ -64,7 +64,7 @@ class Events extends Component {
 
   renderEvents = () => {
     return this.props.events.events.map( (event, index) => {
-      return <EventCard key={index} event={event}/>
+      return <div key={index} className="eventCardDisplay"><EventCard event={event}/></div>
     })
   }
 
