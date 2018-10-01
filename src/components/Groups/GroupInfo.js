@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { getGroup } from './actions';
 import Navbar from '../Navbar/Navbar';
 import EventCard from '../Events/EventCard';
@@ -81,6 +81,15 @@ class GroupInfo extends Component {
     }
   }
 
+  displayEvent = (id) => {
+    this.props.history.push({
+      pathname: `/events/${id}`,
+      state: {
+        id
+      }
+    })
+  }
+
   render() {
     let now = new Date()
     const pastEvents = []
@@ -96,10 +105,10 @@ class GroupInfo extends Component {
         }
       })
     }
-    if (this.props.group.group.events) {
-      console.log(this.props.group.group.events[0].event_img);
-    }
-    console.log(this.props.group.group.events);
+    // if (this.props.group.group.events) {
+    //   console.log(this.props.group.group.events[0].event_img);
+    // }
+    // console.log(this.props.group.group.events);
     return (
       <div>
         <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>
@@ -133,7 +142,7 @@ class GroupInfo extends Component {
             </div>
           </div>
           <div className="groupInfoRight">
-            <h1>Upcoming Events</h1>
+            <h1>Upcoming Events ({upcomingEvents.length})</h1>
             <div>
               {
                 upcomingEvents.length > 0
@@ -141,11 +150,14 @@ class GroupInfo extends Component {
                 : <p>No Events</p>
               }
             </div>
-            <h1>Past Events</h1>
+            <h1>Past Events ({pastEvents.length})</h1>
             <div>
               {
                 pastEvents.length > 0
-                ? pastEvents.map( (event, index) => <Link key={index} to={`/events/${event.id}`}><EventCard event={event} passed={true}/></Link>)
+                ? pastEvents.map( (event, index) =>
+                <div className="groupInfoRightEvent" key={index} onClick={() => this.displayEvent(event.id)}>
+                  <EventCard event={event} passed={true}/>
+              </div>)
                 : <p>No Events</p>
               }
             </div>
@@ -153,7 +165,11 @@ class GroupInfo extends Component {
         </div>
         <div className="groupInfoPhotos container">
           <div>
-            <h1>Photos</h1>
+            {
+              this.props.group.group.events
+              ? <h1>Photos ({this.props.group.group.events.length})</h1>
+              : <h1>Photos (0)</h1>
+            }
           </div>
           <div className="groupInfoImage">
             {this.groupImages()}
@@ -165,4 +181,4 @@ class GroupInfo extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GroupInfo);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupInfo));
