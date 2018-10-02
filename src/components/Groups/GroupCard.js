@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react'
 import HandleGroupForm from './HandleGroupForm';
+import { getGroups } from './actions';
+
+const mapStateToProps = (state) => {
+  return {
+    groups: state.groups
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getGroups: (id) => dispatch(getGroups(id))
+  }
+}
 
 class GroupCard extends Component {
 
@@ -28,7 +42,11 @@ class GroupCard extends Component {
         <div className="overlay">
           <div className="groupCardBody card-body">
             <h3 className="groupCardName card-title">{this.props.group.name}</h3>
-            <p className="groupCardUsers card-text">{this.props.group.num_users} Member(s)</p>
+            {
+              this.props.group.num_users.length > 1
+              ? <p className="groupCardUsers card-text">{this.props.group.num_users} Members</p>
+              : <p className="groupCardUsers card-text">{this.props.group.num_users} Member</p>
+            }
               <Button
                   className="groupCardBtn"
                   inverted color="blue"
@@ -42,4 +60,4 @@ class GroupCard extends Component {
   }
 }
 
-export default withRouter(GroupCard);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupCard));

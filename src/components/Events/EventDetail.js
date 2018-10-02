@@ -6,6 +6,7 @@ import { getCategory } from '../Categories/actions';
 import { getEvent } from '../Events/actions';
 import Navbar from '../Navbar/Navbar';
 import StartOwn from '../StartOwn/StartOwn';
+import { Button } from 'semantic-ui-react'
 
 const mapStateToProps = (state) => {
   return {
@@ -32,11 +33,14 @@ class EventDetail extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     // this.props.getEvents()
     if (localStorage.getItem("token")) {
       this.setState({ hasToken: true })
     }
-    this.props.getEvent(this.props.location.state.id)
+    if (this.props.location.state) {
+      this.props.getEvent(this.props.location.state.id)
+    }
   }
 
   setToken = () => {
@@ -235,8 +239,21 @@ class EventDetail extends Component {
     }
   }
 
+  handleCategories = () => {
+    this.props.history.push({
+      pathname: '/home'
+    })
+  }
+
+  handleEvents = () => {
+    this.props.history.push({
+      pathname: '/events'
+    })
+  }
+
   render() {
-    console.log(this.props.curr_event.curr_event);
+    // console.log(this.props.curr_event.curr_event);
+    console.log(this.props);
     return (
       <div>
         <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>
@@ -255,6 +272,24 @@ class EventDetail extends Component {
               </div>
               <div className="eventDetailOrganizerCategory">
                 {this.renderOrganizerCategory()}
+              </div>
+              <div>
+                <div className="eventDetailButtons">
+                  <div>
+                    <Button
+                      basic color="blue"
+                      onClick={this.handleCategories}>
+                      See Categories
+                    </Button>
+                  </div>
+                  <div>
+                    <Button
+                      basic color="blue"
+                      onClick={this.handleEvents}>
+                      See Events
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { getEvents, getUserInfo } from './actions';
 import Navbar from '../Navbar/Navbar';
 import EventsFiller from './EventsFiller';
@@ -27,7 +28,10 @@ class Events extends Component {
 
   componentDidMount() {
     this.props.getEvents()
-    this.props.getUserInfo(this.props.location.state.id)
+    // this.props.getUserInfo(this.props.location.state.id)
+    if (localStorage.getItem("token")) {
+      this.setState({ hasToken: true })
+    }
   }
 
   setToken = () => {
@@ -53,25 +57,40 @@ class Events extends Component {
       if (this.props.userInfo.user.events.length === 0) {
         return <div>You currently have no events. Please join one</div>
       } else if (this.props.userInfo.user.events.length === 1) {
-        return <EventCard event={this.props.userInfo.user.events[0]} />
+        return <div onClick={() => this.showEventDetails(this.props.userInfo.user.events[0].id)} className="eventCardDisplay"><EventCard event={this.props.userInfo.user.events[0]} /></div>
       } else {
         return this.props.userInfo.user.events.map( (event, index) => {
-          return <div key={index} className="eventCardDisplay"><EventCard event={event} /></div>
+          return <div key={index} onClick={() => this.showEventDetails(event.id)} className="eventCardDisplay"><EventCard event={event} /></div>
         })
       }
     }
   }
 
-  renderEvents = () => {
-    return this.props.events.events.map( (event, index) => {
-      return <div key={index} className="eventCardDisplay"><EventCard event={event}/></div>
+  showEventDetails = (id) => {
+    this.props.history.push({
+      pathname: `/events/${id}`,
+      state: {
+        id
+      }
     })
+  }
+
+  renderEvents = () => {
+    if (this.props.events.events.length === 0) {
+      return <div>Currently No Events</div>
+    } else if (this.props.events.events.length === 1) {
+      return <div onClick={() => this.showEventDetails(this.props.events.events[0].id)} className="eventCardDisplay"><EventCard event={this.props.events.events[0]}/></div>
+    } else {
+      return this.props.events.events.map( (event, index) => {
+        return <div key={index} onClick={() => this.showEventDetails(event.id)} className="eventCardDisplay"><EventCard event={event}/></div>
+      })
+    }
   }
 
   render() {
     return (
       <div>
-        <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken} registered={this.props.location.state.registered}/>
+        <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken} />
         <EventsFiller />
         <div className="eventCards">
           <div className="eventCardsUserEvents">
@@ -96,4 +115,4 @@ class Events extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Events);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Events));

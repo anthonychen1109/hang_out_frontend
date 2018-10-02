@@ -27,11 +27,18 @@ class GroupInfo extends Component {
   state = {
     hasToken: '',
     inGroup: '',
+    user_id: '',
+    username: '',
+    first_name: '',
+    last_name: '',
+    joined: ''
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     if (localStorage.getItem("token")) {
-      this.setState({ hasToken: true })
+      this.getUserInfo()
+      // this.setState({ hasToken: true })
     }
     this.props.getGroup(this.props.location.state.id)
   }
@@ -64,10 +71,11 @@ class GroupInfo extends Component {
         return <p>Currently no members</p>
       } else if (this.props.group.group.num_users === 1) {
         return <GroupInfoMember member={this.props.group.group.users[0]}/>
+      } else {
+        return this.props.group.group.num_users.map(member => {
+          return <GroupInfoMember member={member}/>
+        })
       }
-      return this.props.group.group.num_users.map(member => {
-        return <GroupInfoMember member={member}/>
-      })
     }
   }
 
@@ -98,8 +106,66 @@ class GroupInfo extends Component {
     })
   }
 
-  createEvent = () => {
-    console.log('create');
+  allowedToJoinGroup = () => {
+    if (localStorage.getItem("token")) {
+      this.getUserInfo()
+      this.joinGroup()
+      // this.setState({ hasToken: true })
+    } else {
+      alert("Must be logged in to join group")
+    }
+  }
+
+  getUserInfo = () => {
+    fetch('http://localhost:8000/api/current_user/', {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem('token')}`
+        }
+      })
+      .then(res => res.json())
+      .then(json => {
+        console.log(json)
+        this.setState({
+          user_id: json.id,
+          hasToken: true,
+          username: json.username,
+          first_name: json.first_name,
+          last_name: json.last_name
+        })
+      })
+  }
+
+  joinGroup = () => {
+    const newUser = this.state.user_id
+    const group = {
+      ...this.props.group.group,
+      users: [...this.props.group.group.users, newUser]
+    }
+    console.log("GROUP", group);
+    fetch(`http://localhost:8000/api/v1/groups/${this.props.group.group.category}/`, {
+      method: "PATCH",
+      body: JSON.stringify(group),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+    .then( r => r.json())
+    .then(response => {
+      console.log('Success:', JSON.stringify(response))
+      this.setState({ joined: true })
+    })
+    .catch(error => console.error('Error:', error));
+  }
+
+  showJoinButton = () => {
+    if (this.props.group.group.users) {
+      let result = [this.props.group.group.users].map(function (x) {
+        return parseInt(x, 10);
+      });
+      return result.includes(this.state.user_id) || this.state.joined === true
+      ? <div><div><p className="alreadyInGroup">Already in this group</p></div><div><button className="btn btn-primary" disabled={true}>Join Group</button></div></div>
+      : <button className="btn btn-primary" onClick={this.allowedToJoinGroup}>Join Group</button>
+    }
   }
 
   render() {
@@ -116,7 +182,8 @@ class GroupInfo extends Component {
           upcomingEvents.push(event)
         }
       })
-      console.log(this.props.group.group);
+      // console.log(this.props.group.group);
+      console.log(this.state.user_id);
     }
     return (
       <div>
@@ -130,11 +197,12 @@ class GroupInfo extends Component {
             <h1>{this.props.group.group.name}</h1>
             {
               this.props.group.group.num_users > 1
-              ? <p>{this.props.group.group.num_users} members</p>
-              : <p>{this.props.group.group.num_users} member</p>
+              ? <p>{this.props.group.group.num_users} Members</p>
+              : <p>{this.props.group.group.num_users} Member</p>
             }
-            <p>organized by {this.props.group.group.organizer_name}</p>
-            <button className="btn btn-primary" onClick={this.createEvent}>Join Group</button>
+            <p>Organized by {this.props.group.group.organizer_name}</p>
+            {this.showJoinButton()}
+
           </div>
         </div>
         <hr/>

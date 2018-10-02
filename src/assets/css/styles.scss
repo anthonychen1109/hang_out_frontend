@@ -42,6 +42,7 @@
 }
 // ########### NAVBAR ###########
 .navbar {
+    display: flex;
     padding-top: 10px;
 }
 
@@ -248,6 +249,11 @@
   }
 }
 
+.eventDetailButtons {
+  display: flex;
+  margin-top: 10px;
+}
+
 // ########### GROUP ###########
 .groupsFiller {
   background-image: url('../images/group.jpeg');
@@ -329,6 +335,10 @@
   margin: 10px;
   max-height: 20vh;
   max-width: 20vw;
+}
+
+.alreadyInGroup {
+  color: red;
 }
 
 .photoModal :hover{
@@ -438,6 +448,7 @@
 .groupInfoMemberAvatar {
   border-radius: 50%;
 }
+
 
 // ########### WELCOME ###########
 .welcomeFiller {

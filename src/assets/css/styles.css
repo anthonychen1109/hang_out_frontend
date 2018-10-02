@@ -31,6 +31,7 @@
         text-shadow: 0px 0px 3px black; }
 
 .navbar {
+  display: flex;
   padding-top: 10px; }
 
 .navbarLogo h1 {
@@ -191,6 +192,10 @@
   max-height: 50px;
   max-width: 50px; }
 
+.eventDetailButtons {
+  display: flex;
+  margin-top: 10px; }
+
 .groupsFiller {
   background-image: url("../images/group.jpeg");
   background-position: center;
@@ -256,6 +261,9 @@
   margin: 10px;
   max-height: 20vh;
   max-width: 20vw; }
+
+.alreadyInGroup {
+  color: red; }
 
 .photoModal :hover {
   cursor: pointer; }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import UserModal from '../UserModal/Usermodal';
+import { Button } from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom';
 
 class Filler extends Component {
     state = {
@@ -17,6 +19,13 @@ class Filler extends Component {
             registered: true
         })
     }
+
+    handleSubmit = () => {
+      this.props.history.push({
+        pathname: '/events'
+      })
+    }
+
     render() {
         return (
             <div className="filler">
@@ -24,8 +33,13 @@ class Filler extends Component {
                     <div className="fillerDiv">
                         <h1>Do more of what you love with Hang Outs</h1>
                         {
-                          !this.props.hasToken &&
-                          <UserModal
+                          this.props.hasToken
+                          ? <Button
+                              inverted color="blue"
+                              onClick={this.handleSubmit}>
+                              See Events
+                          </Button>
+                          : <UserModal
                             setToken={this.props.setToken}
                             registered={this.state.registered}
                             register={this.register}
@@ -39,4 +53,4 @@ class Filler extends Component {
     }
 }
 
-export default Filler;
+export default withRouter(Filler);

@@ -4,6 +4,7 @@ import * as GroupAPIAdapter from '../../adapter/groups_api_adapter';
 
 export const FETCH_GROUPS = 'FETCH_GROUPS'
 export const FETCH_GROUP = 'FETCH_GROUP'
+export const JOIN_GROUP = 'JOIN_GROUP'
 
 const setGroups = (category) => {
   return {

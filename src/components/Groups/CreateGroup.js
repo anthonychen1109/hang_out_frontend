@@ -5,6 +5,7 @@ import Navbar from '../Navbar/Navbar';
 import CreateGroupFiller from './CreateGroupFiller';
 import Categories from '../Categories/Categories';
 import StartOwn from '../StartOwn/StartOwn';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
     return {
@@ -35,9 +36,9 @@ class CreateGroup extends Component {
     stepFourButton: true,
     hometown: '',
     hangOutName: '',
-    description: '',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio. Vulputate eu scelerisque felis imperdiet proin. Egestas egestas fringilla phasellus faucibus scelerisque eleifend. Imperdiet proin fermentum leo vel. Gravida quis blandit turpis cursus in hac. Egestas sed tempus urna et. Eget egestas purus viverra accumsan in nisl. Nec sagittis aliquam malesuada bibendum arcu. Facilisi etiam dignissim diam quis. Hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Nisl vel pretium lectus quam id leo in vitae turpis. Donec adipiscing tristique risus nec feugiat. Elementum facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Accumsan tortor posuere ac ut.',
     category: 1,
-    hangOutImage: ''
+    hangOutImage: 'https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350'
   }
 
   componentDidMount() {
@@ -270,6 +271,9 @@ class CreateGroup extends Component {
     .then(response => console.log('Success:', JSON.stringify(response)))
     .catch(error => console.error('Error:', error));
     // console.log('submit');
+    this.props.history.push({
+      pathname: "/events"
+    })
   }
 
   render() {
@@ -290,4 +294,4 @@ class CreateGroup extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateGroup);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreateGroup));
