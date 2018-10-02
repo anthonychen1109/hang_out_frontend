@@ -25,10 +25,14 @@ const mapDispatchToProps = (dispatch) => {
 class GroupInfo extends Component {
 
   state = {
-    hasToken: ''
+    hasToken: '',
+    inGroup: '',
   }
 
   componentDidMount() {
+    if (localStorage.getItem("token")) {
+      this.setState({ hasToken: true })
+    }
     this.props.getGroup(this.props.location.state.id)
   }
 
@@ -86,9 +90,16 @@ class GroupInfo extends Component {
     this.props.history.push({
       pathname: `/events/${id}`,
       state: {
-        id
+        id,
+        organizer_name: this.props.group.group.organizer_name,
+        name: this.props.group.group.name,
+        group_img : this.props.group.group.group_img
       }
     })
+  }
+
+  createEvent = () => {
+    console.log('create');
   }
 
   render() {
@@ -105,11 +116,8 @@ class GroupInfo extends Component {
           upcomingEvents.push(event)
         }
       })
+      console.log(this.props.group.group);
     }
-    // if (this.props.group.group.events) {
-    //   console.log(this.props.group.group.events[0].event_img);
-    // }
-    // console.log(this.props.group.group.events);
     return (
       <div>
         <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>
@@ -126,6 +134,7 @@ class GroupInfo extends Component {
               : <p>{this.props.group.group.num_users} member</p>
             }
             <p>organized by {this.props.group.group.organizer_name}</p>
+            <button className="btn btn-primary" onClick={this.createEvent}>Join Group</button>
           </div>
         </div>
         <hr/>

@@ -19,6 +19,12 @@ class Group extends Component {
     hasToken: ''
   }
 
+  componentDidMount() {
+    if (localStorage.getItem("token")) {
+      this.setState({ hasToken: true })
+    }
+  }
+
   renderGroups = () => {
     if (this.props.groups.groups.length === 0) {
       return <div><span className="navbarNewGroup"><Link to='/new_group'>Start a new group</Link></span></div>

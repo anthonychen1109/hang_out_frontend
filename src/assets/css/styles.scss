@@ -206,9 +206,46 @@
   display: flex;
 }
 
+.eventDetailTitleRight {
+  margin-left: 10px;
+}
+
 .eventDetailDetails {
   padding-bottom: 40px;
   padding-top: 40px;
+}
+
+.dateCard {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  .dateCardDay {
+    color: red;
+  }
+}
+
+.eventDetailContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.eventDetailImg {
+  max-height: 200px;
+  max-width: 300px;
+}
+
+.eventDetailHostCategory {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+}
+
+.hostAvatar {
+  img {
+    border-radius: 50%;
+    max-height: 50px;
+    max-width: 50px;
+  }
 }
 
 // ########### GROUP ###########
