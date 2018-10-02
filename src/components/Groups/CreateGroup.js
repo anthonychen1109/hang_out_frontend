@@ -21,6 +21,10 @@ const mapDispatchToProps = (dispatch) => {
 class CreateGroup extends Component {
 
   state = {
+    user_id: '',
+    username: '',
+    first_name: '',
+    last_name: '',
     hasToken: '',
     stepOneButton: true,
     stepTwo: '',
@@ -31,14 +35,36 @@ class CreateGroup extends Component {
     stepFourButton: true,
     hometown: '',
     hangOutName: '',
-    description: ''
+    description: '',
+    category: 1,
+    hangOutImage: ''
   }
 
   componentDidMount() {
     this.props.getCategories()
     if (localStorage.getItem("token")) {
-      this.setState({ hasToken: true })
+      this.getUser()
+      // this.setState({ hasToken: true })
     }
+  }
+
+  getUser = () => {
+    fetch('http://localhost:8000/api/current_user/', {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem('token')}`
+        }
+      })
+        .then(res => res.json())
+        .then(json => {
+          console.log(json)
+          this.setState({
+            user_id: json.id,
+            hasToken: true,
+            username: json.username,
+            first_name: json.first_name,
+            last_name: json.last_name
+          })
+        })
   }
 
   setToken = () => {
@@ -63,6 +89,10 @@ class CreateGroup extends Component {
     this.setState({
       [e.target.name]: e.target.value
     })
+  }
+
+  handleChange = (e) => {
+    this.setState({ category: e.target.value })
   }
 
   stepOne = () => {
@@ -102,8 +132,8 @@ class CreateGroup extends Component {
         <div className="stepOneHometown">
           <p>STEP 2 OF 4</p>
           <h1>What will your Hang Out be about?</h1>
-            <select name="" id="">
-              {this.props.categories.categories.map( (category, index) => <option key={index} value="">{category.name}</option>)}
+            <select onChange={this.handleChange} name="" id="">
+              {this.props.categories.categories.map( (category, index) => <option key={index} value={category.id}>{category.name}</option>)}
             </select>
           <button className="nextBtn btn btn-primary" disabled={!this.state.stepTwoButton} onClick={this.allowStepThree}>Next</button>
         </div>
@@ -130,8 +160,10 @@ class CreateGroup extends Component {
           <p>STEP 3 OF 4</p>
           <h1>What will your Hang Out's name be?</h1>
           <input type="text" value={this.state.hangOutName} name="hangOutName" onChange={this.handleData}/>
+          <h1>Upload a picture for your Hang Out</h1>
+          <textarea type="text" rows="5" value={this.state.hangOutImage} name="hangOutImage" onChange={this.handleData}></textarea>
           <h1>Describe who should join, and what your Hang Out will do.</h1>
-          <textarea type="text" rows="5" value="description" name="description" onChange={this.handleData}></textarea>
+          <textarea type="text" rows="5" value={this.state.description} name="description" onChange={this.handleData}></textarea>
           <button className="nextBtn btn btn-primary" disabled={!this.state.stepThreeButton} onClick={this.allowStepFour}>Next</button>
         </div>
       </div>
@@ -217,19 +249,35 @@ class CreateGroup extends Component {
     )
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault()
     const newGroup = {
-
+      name: this.state.hangOutName,
+      category: this.state.category,
+      description: this.state.description,
+      users: [this.state.user_id],
+      group_img: this.state.hangOutImage,
+      organizer_name: this.state.username
     }
+    fetch('http://localhost:8000/api/v1/groups/', {
+      method: "POST",
+      body: JSON.stringify(newGroup),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .then(response => console.log('Success:', JSON.stringify(response)))
+    .catch(error => console.error('Error:', error));
+    // console.log('submit');
   }
 
   render() {
-    console.log(this.state.hometown);
+    // this.props.categories.categories.map(category => console.log(category))e
     return (
       <div>
         <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>
         <CreateGroupFiller hasToken={this.state.hasToken}/>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           {
             this.state.hasToken
             ? this.allowCreate()
