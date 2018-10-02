@@ -41,6 +41,7 @@ class CreateGroup extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     this.props.getCategories()
     if (localStorage.getItem("token")) {
       this.getUser()
@@ -284,7 +285,6 @@ class CreateGroup extends Component {
             : this.doNotAllowCreate()
           }
         </form>
-        <StartOwn />
       </div>
     )
   }

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class StartOwn extends Component {
   render() {
     return (
       <div className="startOwn">
         <div className="startOwnHeader container">
-          <h1>Start a new group</h1>
+          <Link to='/new_group'><h1>Start a new group</h1></Link>
         </div>
         <div className="startOwnDocs container">
           <div>
