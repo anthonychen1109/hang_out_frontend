@@ -124,6 +124,14 @@
 }
 
 // ########### EVENTS ###########
+.createEventLoggedIn {
+  padding-top: 40px;
+  text-align: center;
+  h1 {
+    color: red;
+  }
+}
+
 .eventsFiller {
   background-image: url('../images/events_bg.jpg');
   background-position: center;

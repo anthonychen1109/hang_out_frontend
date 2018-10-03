@@ -53,7 +53,7 @@ class CreateEvent extends Component {
     this.props.getAllGroups()
     if (localStorage.getItem("token")) {
       this.getUser()
-      // this.setState({ hasToken: true })
+      this.setState({ hasToken: true })
     }
   }
 
@@ -309,6 +309,7 @@ class CreateEvent extends Component {
       <div>
         <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>
         <EventsFiller hasToken={this.state.hasToken}/>
+        { !this.state.hasToken && <div className="createEventLoggedIn animated shake" ><h1>MUST BE LOGGED IN TO CREATE EVENT</h1></div> }
         <form onSubmit={(e) => this.handleSubmit(e)}>
           {
             this.state.hasToken
