@@ -71,9 +71,9 @@ class GroupInfo extends Component {
       if (this.props.group.group.num_users.length === 0) {
         return <p>Currently no members</p>
       } else if (this.props.group.group.num_users === 1) {
-        return <GroupInfoMember member={this.props.group.group.users[0]}/>
+        return <GroupInfoMember member={this.props.group.group.user_names[0]}/>
       } else {
-        return this.props.group.group.users.map(member => {
+        return this.props.group.group.user_names.map(member => {
           return <GroupInfoMember member={member}/>
         })
       }
@@ -143,7 +143,8 @@ class GroupInfo extends Component {
       users: [...this.props.group.group.users, newUser]
     }
     console.log("GROUP", group);
-    fetch(`http://localhost:8000/api/v1/groups/${this.props.group.group.category}/`, {
+    console.log('new user', newUser);
+    fetch(`http://localhost:8000/api/v1/groups/${this.props.group.group.id}/`, {
       method: "PUT",
       body: JSON.stringify(group),
       headers:{
@@ -152,8 +153,8 @@ class GroupInfo extends Component {
     })
     .then( r => r.json())
     .then(response => {
-      console.log('Success:', JSON.stringify(response))
-      this.setState({ joined: true })
+      console.log('Success:', response)
+      this.setState({ joined: true }, this.props.getGroup(this.props.group.group.id))
     })
     .catch(error => console.error('Error:', error));
   }
@@ -189,8 +190,8 @@ class GroupInfo extends Component {
           upcomingEvents.push(event)
         }
       })
-      // console.log(this.props.group.group);
-      console.log(this.state.user_id);
+      console.log(this.props.group.group);
+      // console.log(this.props.group.group.user_names);
     }
     return (
       <div>
