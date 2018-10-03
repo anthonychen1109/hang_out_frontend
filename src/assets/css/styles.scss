@@ -201,6 +201,9 @@
 
 .eventCardDisplay {
   margin-top: 10px;
+  :hover {
+    cursor: pointer;
+  }
 }
 
 .eventDetailDateTitle {
@@ -280,6 +283,7 @@
 
 .groupDiv {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 40px;
   margin-top: 40px;
 }
@@ -328,6 +332,14 @@
   .groupInfoImage {
     display: flex;
     flex-wrap: wrap;
+  }
+}
+
+.groupInfoJoinCategoriesButton {
+  display: flex;
+  flex-direction: column;
+  div {
+    margin-top: 10px;
   }
 }
 

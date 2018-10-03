@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { getGroup } from './actions';
 import Navbar from '../Navbar/Navbar';
 import EventCard from '../Events/EventCard';
@@ -8,6 +8,7 @@ import StartOwn from '../StartOwn/StartOwn';
 import GroupInfoMember from './GroupInfoMember';
 import GroupPhotoModal from './GroupPhotoModal';
 import Time from 'react-time';
+import { Button } from 'semantic-ui-react'
 
 const mapStateToProps = (state) => {
   return {
@@ -72,7 +73,7 @@ class GroupInfo extends Component {
       } else if (this.props.group.group.num_users === 1) {
         return <GroupInfoMember member={this.props.group.group.users[0]}/>
       } else {
-        return this.props.group.group.num_users.map(member => {
+        return this.props.group.group.users.map(member => {
           return <GroupInfoMember member={member}/>
         })
       }
@@ -143,7 +144,7 @@ class GroupInfo extends Component {
     }
     console.log("GROUP", group);
     fetch(`http://localhost:8000/api/v1/groups/${this.props.group.group.category}/`, {
-      method: "PATCH",
+      method: "PUT",
       body: JSON.stringify(group),
       headers:{
         'Content-Type': 'application/json'
@@ -163,9 +164,15 @@ class GroupInfo extends Component {
         return parseInt(x, 10);
       });
       return result.includes(this.state.user_id) || this.state.joined === true
-      ? <div><div><p className="alreadyInGroup">Already in this group</p></div><div><button className="btn btn-primary" disabled={true}>Join Group</button></div></div>
-      : <button className="btn btn-primary" onClick={this.allowedToJoinGroup}>Join Group</button>
+      ? <div><div><p className="alreadyInGroup">Already in this group</p></div><div><Button inverted color="blue" disabled={true}>Join Group</Button></div></div>
+      : <Button inverted color="blue" onClick={this.allowedToJoinGroup}>Join Group</Button>
     }
+  }
+
+  handleSubmit = () => {
+    this.props.history.push({
+      pathname: '/home'
+    })
   }
 
   render() {
@@ -200,9 +207,18 @@ class GroupInfo extends Component {
               ? <p>{this.props.group.group.num_users} Members</p>
               : <p>{this.props.group.group.num_users} Member</p>
             }
-            <p>Organized by {this.props.group.group.organizer_name}</p>
-            {this.showJoinButton()}
-
+            <div className="groupInfoJoinCategoriesButton">
+              <div>
+                <p>Organized by {this.props.group.group.organizer_name}</p>
+                {this.showJoinButton()}
+              </div>
+              <div>
+                <Button inverted color="blue" onClick={this.handleSubmit}>See Categories</Button>
+              </div>
+              <div>
+                <Link to='/create_event'><Button inverted color="blue">Create Event</Button></Link>
+              </div>
+            </div>
           </div>
         </div>
         <hr/>
