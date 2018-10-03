@@ -50,7 +50,7 @@ class EventsFiller extends Component {
   }
 
   render() {
-    console.log(this.props.location.pathname);
+    // console.log(this.props.location.pathname);
     return (
         <div className="eventsFiller">
             <div className="overlay">

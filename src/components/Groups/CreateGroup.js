@@ -135,6 +135,7 @@ class CreateGroup extends Component {
           <p>STEP 2 OF 4</p>
           <h1>What will your Hang Out be about?</h1>
             <select onChange={this.handleChange} name="" id="">
+              <option disabled selected value> -- select an option -- </option>
               {this.props.categories.categories.map( (category, index) => <option key={index} value={category.id}>{category.name}</option>)}
             </select>
           <button className="nextBtn btn btn-primary" disabled={!this.state.stepTwoButton} onClick={this.allowStepThree}>Next</button>
