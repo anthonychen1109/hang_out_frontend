@@ -298,9 +298,6 @@ class EventDetail extends Component {
 
   handleEvents = () => {
     this.handleAttend()
-    this.props.history.push({
-      pathname: '/events'
-    })
   }
 
   handleAttend = () => {
@@ -321,11 +318,16 @@ class EventDetail extends Component {
       .then( r => r.json())
       .then(response => {
         console.log('Success:', response)
-        this.setState({ joined: true })
+        this.setState({ joined: true }, this.props.history.push({
+          pathname: '/events'
+        }))
       })
       .catch(error => console.error('Error:', error));
     } else {
       alert("Must be logged in to attend event")
+      this.props.history.push({
+        pathname: this.props.location.pathname
+      })
     }
   }
 
