@@ -39,9 +39,9 @@ class HandleUserForm extends Component {
       })
         .then(res => res.json())
         .then(json => {
+          if (json.user) {
           localStorage.setItem('token', json.token);
           this.props.setToken()
-          if (json.user) {
             this.setState({
               userLoggedIn: true,
               id: json.user.id,
@@ -50,6 +50,7 @@ class HandleUserForm extends Component {
               last_name: json.user.last_name
             }, () => this.loggedInUser(this.state));
           } else {
+
             alert('Invalid Login')
           }
         });
