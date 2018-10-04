@@ -5,6 +5,7 @@ import { getEvents, getUserInfo } from './actions';
 import Navbar from '../Navbar/Navbar';
 import EventsFiller from './EventsFiller';
 import EventCard from './EventCard';
+import StartOwn from '../StartOwn/StartOwn';
 
 const mapStateToProps = (state) => {
   return {
@@ -134,6 +135,7 @@ class Events extends Component {
             </div>
           </div>
         </div>
+        <StartOwn />
       </div>
     )
   }
