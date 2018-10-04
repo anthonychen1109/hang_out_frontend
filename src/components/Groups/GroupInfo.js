@@ -219,6 +219,9 @@ class GroupInfo extends Component {
               <div>
                 <Link to='/create_event'><Button inverted color="blue">Create Event</Button></Link>
               </div>
+              <div>
+                <Link to='/events'><Button inverted color="blue">Events</Button></Link>
+              </div>
             </div>
           </div>
         </div>
