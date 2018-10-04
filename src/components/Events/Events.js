@@ -23,15 +23,38 @@ const mapDispatchToProps = (dispatch) => {
 class Events extends Component {
 
   state = {
-    hasToken: ''
+    hasToken: '',
+    user_id: '',
+    username: '',
+    first_name: '',
+    last_name: ''
   }
 
   componentDidMount() {
     this.props.getEvents()
     // this.props.getUserInfo(this.props.location.state.id)
     if (localStorage.getItem("token")) {
-      this.setState({ hasToken: true })
+      // this.setState({ hasToken: true })
+      this.getUser()
     }
+  }
+
+  getUser = () => {
+    fetch('http://localhost:8000/api/current_user/', {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem('token')}`
+        }
+      })
+        .then(res => res.json())
+        .then(json => {
+          this.setState({
+            user_id: json.id,
+            hasToken: true,
+            username: json.username,
+            first_name: json.first_name,
+            last_name: json.last_name
+          }, () => this.props.getUserInfo(this.state.user_id))
+        })
   }
 
   setToken = () => {
@@ -53,6 +76,7 @@ class Events extends Component {
   }
 
   renderUserEvents = () => {
+    console.log('before condition check');
     if (this.props.userInfo.user) {
       if (this.props.userInfo.user.events.length === 0) {
         return <div>You currently have no events. Please join one</div>
