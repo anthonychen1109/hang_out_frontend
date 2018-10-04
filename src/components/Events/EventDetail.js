@@ -213,22 +213,26 @@ class EventDetail extends Component {
           <div className="hostAvatar">
             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHkAAAB5CAMAAAAqJH57AAAANlBMVEWVu9////+QuN6Mtt35+/3v9Pqvy+bU4vGqyOXe6fSavuD1+Py30OigwuLC1+zY5fLN3u/l7vcDMSz6AAADSElEQVRoge2b65arIAyFJYAKgpf3f9njpTO9WGXHhnrWGvfPs07na4SQZFOL4tKlS39bpHUR60mx0Jq+hqW6dY1Ri0zj2pq+Ade+t+pVtvc6M5eKyqy4c+hVkTVuCu+5MztkROtqkzupyvbE9bALVmrIhE6Cc6F1nwQr1WdAUw2AlaozbLN1Fr+TFedSgMBKyecWFrJ80FSCYKVK2aC1g8lOdnv7BiY3XpSMpdSiWhJMLYPcSi40Y5mFF1qjOTXJipLxDTZuMdG0YpElwX67FVnLSKbVXySft8502t4+MZ/Tzd9dom0g7Tfaz6okn/Z5FYNVJUtJcBHxhDZRlAw3gOIt4Hl9GNxuyzfcESYLL/N5nT5+loieI7PQjBbteWcROEvKT7GEDO7j6J5hfiaInMMfgoKW31+zAHIWLhJ0jlWe0amCZXK5gEnjQNgueFDCEsthhv2i94qlcHl8EW2jXWZ3nboNcJcRvPzpjTb01nBmOcL8LVl1XLf9Q1zWmHovzCaK1b0O6fp5tV1921tTPaui3HUKaR2WMO3P09RU9s4aY6zrS/rh+qWQDkHmIklTeIiw/M2c8fvM+mXoh3PGBfowxUiXL2m0dUVDxcumd+UngeuwbkRM+4ZNRbs+0215PO73x0bTx+IhnvG5xv79ZO+Ogrc7L1uFuLghPoZq5/8d4lJqWm+stSkXYziw1olbMVQHbs84E/Oe2P03yxnZE9s1kQqZHbTeKoZ8dbygk80eLl5byBjU02KN8iz/KyXW3KHlHvb4uDkL7QXBSjFcZ9FlZi00OCujYkxbyWLBE6NsaFGwUvgWw+wBXHjM+GUzJtj9ZbnZiGDHe3N2Oip45hLe2pzNzbkjQoTfYAmDccsId5RRgc4z4xccqEDrRjyp4LQSrheTwJohns5wQu/4P0cF+kbiBwl+lHCufDGhM+VF/iL5xL0tN0f+CP1FJNWyZbJh/BRzZYN9IK4x9mz9HcceMQOJdLljOKVlqzHagz4gjR8M3ZHDdOjC/OlPNH7e162z6FxrrGtr/yn1jp9eRWg72+zxTWO7tn5yJoW0vAoR2m4Yv8H9K5iROHRtyP6CBM3GNvnpdYxyeiHDL//wtZcyLl269P/pHwa5JDf/Az7rAAAAAElFTkSuQmCC" alt="avatar image"/>
           </div>
-          <div>
-            <div>
-              {
-                this.props.location.state.organizer_name
-                ? <p>Hosted by {this.props.location.state.organizer_name}</p>
-                : this.props.curr_event.curr_event.organizer && <p>Hosted by {this.props.curr_event.curr_event.organizer}</p>
-              }
-            </div>
-            <div>
-              {
-                this.props.location.state.name
-                ? <p>From {this.props.location.state.name}</p>
-                : this.props.curr_event.curr_event.name && <p>From {this.props.curr_event.curr_event.name}</p>
+          {
+            this.props.curr_event.curr_event
+            ? <div>
+                <div>
+                  {
+                    this.props.location.state.organizer_name
+                    ? <p>Hosted by {this.props.location.state.organizer_name}</p>
+                    : this.props.curr_event.curr_event.organizer && <p>Hosted by {this.props.curr_event.curr_event.organizer}</p>
+                }
+              </div>
+              <div>
+                {
+                  this.props.location.state.name
+                  ? <p>From {this.props.location.state.name}</p>
+                  : this.props.curr_event.curr_event.name && <p>From {this.props.curr_event.curr_event.name}</p>
               }
             </div>
           </div>
+          : null
+        }
         </div>
       )
     }
@@ -257,7 +261,7 @@ class EventDetail extends Component {
 
   render() {
     // console.log(this.props.curr_event.curr_event);
-    // console.log(this.props.curr_event.curr_event);
+    console.log(this.props.curr_event.curr_event);
     return (
       <div>
         <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>

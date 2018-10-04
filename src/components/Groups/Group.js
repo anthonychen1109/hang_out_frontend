@@ -29,6 +29,7 @@ class Group extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     if (localStorage.getItem("token")) {
       this.setState({ hasToken: true })
     }
