@@ -133,6 +133,8 @@
       flex-wrap: wrap;
       justify-content: space-evenly;
       margin-bottom: 80px;
+      max-height: 400px;
+      overflow: scroll;
       padding-top: 40px; }
   .eventCards .eventCardsAllEvents {
     display: flex;

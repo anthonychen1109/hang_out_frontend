@@ -112,7 +112,7 @@ class CreateEvent extends Component {
         </div>
         <div className="stepOneHometown">
           <p>STEP 1 OF 4</p>
-          <h1>What's the name of your new Hang Out's?</h1>
+          <h1>What's the name of your new Hang Out?</h1>
           <input type="text" name="name" value={this.state.name} onChange={this.handleData}/>
           <h1>Address</h1>
           <input type="text" name="address" value={this.state.address} onChange={this.handleData}/>

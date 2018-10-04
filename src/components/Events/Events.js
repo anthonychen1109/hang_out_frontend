@@ -77,7 +77,7 @@ class Events extends Component {
   }
 
   renderUserEvents = () => {
-    console.log('before condition check');
+    // console.log('before condition check');
     if (this.props.userInfo.user) {
       if (this.props.userInfo.user.events.length === 0) {
         return <div>You currently have no events. Please join one</div>

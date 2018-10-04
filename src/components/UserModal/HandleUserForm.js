@@ -41,13 +41,17 @@ class HandleUserForm extends Component {
         .then(json => {
           localStorage.setItem('token', json.token);
           this.props.setToken()
-          this.setState({
-            userLoggedIn: true,
-            id: json.user.id,
-            username: json.user.username,
-            first_name: json.user.first_name,
-            last_name: json.user.last_name
-          }, () => this.loggedInUser(this.state));
+          if (json.user) {
+            this.setState({
+              userLoggedIn: true,
+              id: json.user.id,
+              username: json.user.username,
+              first_name: json.user.first_name,
+              last_name: json.user.last_name
+            }, () => this.loggedInUser(this.state));
+          } else {
+            alert('Invalid Login')
+          }
         });
     }
 
@@ -62,25 +66,29 @@ class HandleUserForm extends Component {
           first_name: this.state.first_name,
           last_name: this.state.last_name
       }
-       fetch('http://localhost:8000/api/users/', {
-         method: 'POST',
-         headers: {
-           'Accept': 'application/json',
-           'Content-Type': 'application/json'
-         },
-         body: JSON.stringify(newUser)
-       })
-         .then(res => res.json())
-         .then(json => {
-           localStorage.setItem('token', json.token);
-           this.props.setToken()
-           this.setState({
-             userLoggedIn: true,
-             username: json.username,
-             first_name: json.first_name,
-             last_name: json.last_name
-           }, () => this.signedUpUser(newUser))
+       try {
+         fetch('http://localhost:8000/api/users/', {
+           method: 'POST',
+           headers: {
+             'Accept': 'application/json',
+             'Content-Type': 'application/json'
+           },
+           body: JSON.stringify(newUser)
          })
+           .then(res => res.json())
+           .then(json => {
+             localStorage.setItem('token', json.token);
+             this.props.setToken()
+             this.setState({
+               userLoggedIn: true,
+               username: json.username,
+               first_name: json.first_name,
+               last_name: json.last_name
+             }, () => this.signedUpUser(newUser))
+           })
+       } catch(error) {
+        console.log(error);
+       }
       }
     }
 
@@ -116,67 +124,53 @@ class HandleUserForm extends Component {
         return (
         this.props.registered
             ? <Form className="loginForm" onSubmit={this.handleLogin}>
-            <h1>Login</h1>
-            <Form.Field>
-                <label><p className="formInputs">User Name</p></label>
-                <Input type='text' placeholder="User Name" name="username" onChange={this.handleChange}/>
-            </Form.Field>
+                <h1>Login</h1>
+                <Form.Field>
+                    <label><p className="formInputs">User Name</p></label>
+                    <Input type='text' placeholder="User Name" name="username" onChange={this.handleChange}/>
+                </Form.Field>
 
-            <Form.Field>
-                <label><p className="formInputs">Enter Password</p></label>
-                <Input type='password' placeholder="Password" name="password" onChange={this.handleChange}/>
-            </Form.Field>
+                <Form.Field>
+                    <label><p className="formInputs">Enter Password</p></label>
+                    <Input type='password' placeholder="Password" name="password" onChange={this.handleChange}/>
+                </Form.Field>
 
-            <div className='ui buttons'>
-                <Button type='submit' className='ui button' onClick={this.props.handleClose}>
-                Cancel
-              </Button>
-                <div />
-                <Button type='submit' className='ui positive button'>
-                Submit
-              </Button>
-            </div>
-            </Form>
-
+                <div className='ui buttons'>
+                  <Form.Button content='Submit' />
+                </div>
+              </Form>
             : <Form className="registerForm" onSubmit={this.handleRegister}>
-            <h1>Register</h1>
-            <Form.Field>
-                <label><p className="formInputs">User Name</p></label>
-                <Input type='text' placeholder="User Name" name="username" onChange={this.handleChange}/>
-            </Form.Field>
+                <h1>Register</h1>
+                <Form.Field>
+                    <label><p className="formInputs">User Name</p></label>
+                    <Input type='text' placeholder="User Name" name="username" onChange={this.handleChange}/>
+                </Form.Field>
 
-            <Form.Field>
-                <label><p className="formInputs">First Name</p></label>
-                <Input type='text' placeholder="First Name" name="first_name" onChange={this.handleChange}/>
-            </Form.Field>
+                <Form.Field>
+                    <label><p className="formInputs">First Name</p></label>
+                    <Input type='text' placeholder="First Name" name="first_name" onChange={this.handleChange}/>
+                </Form.Field>
 
-            <Form.Field>
-                <label><p className="formInputs">Last Name</p></label>
-                <Input type='text' placeholder="Last Name" name="last_name" onChange={this.handleChange}/>
-            </Form.Field>
+                <Form.Field>
+                    <label><p className="formInputs">Last Name</p></label>
+                    <Input type='text' placeholder="Last Name" name="last_name" onChange={this.handleChange}/>
+                </Form.Field>
 
 
-            <Form.Field>
-                <label><p className="formInputs">Enter Password</p></label>
-                <li className="formInputsPWmsg">Password must be 8 characters or longer</li>
-                <Input type='password' placeholder="Password" name="password" onChange={this.handleChange}/>
-            </Form.Field>
+                <Form.Field>
+                    <label><p className="formInputs">Enter Password</p></label>
+                    <li className="formInputsPWmsg">Password must be 8 characters or longer</li>
+                    <Input type='password' placeholder="Password" name="password" onChange={this.handleChange}/>
+                </Form.Field>
 
-            <Form.Field>
-                <label><p className="formInputs">Confirm Password</p></label>
-                <Input type='password' placeholder="Confirm Password" name="confirmPassword" onChange={this.handleChange}/>
-            </Form.Field>
-
-            <div className='ui buttons'>
-                <button className='ui button' onClick={this.props.handleClose}>
-                Cancel
-                </button>
-                <div />
-                <button className='ui positive button'>
-                Submit
-                </button>
-            </div>
-            </Form>
+                <Form.Field>
+                    <label><p className="formInputs">Confirm Password</p></label>
+                    <Input type='password' placeholder="Confirm Password" name="confirmPassword" onChange={this.handleChange}/>
+                </Form.Field>
+                <div className='ui buttons'>
+                    <Form.Button content='Submit' />
+                </div>
+              </Form>
         )
     }
 
