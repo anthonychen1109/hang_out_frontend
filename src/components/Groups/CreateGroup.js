@@ -273,12 +273,12 @@ class CreateGroup extends Component {
     .catch(error => console.error('Error:', error));
     // console.log('submit');
     this.props.history.push({
-      pathname: "/events"
+      pathname: `/categories/${this.state.category}`
     })
   }
 
   render() {
-    // this.props.categories.categories.map(category => console.log(category))e
+    // this.props.categories.categories.map(category => console.log(category))
     return (
       <div>
         <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>
