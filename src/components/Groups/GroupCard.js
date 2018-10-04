@@ -31,6 +31,7 @@ class GroupCard extends Component {
   }
 
   render() {
+    console.log(this.props);
     const { active } = this.state
     const background = this.props.group.group_img
     return (

@@ -6,6 +6,7 @@ import GroupCard from './GroupCard';
 import GroupFiller from './GroupFiller';
 import StartOwn from '../StartOwn/StartOwn';
 import { getGroups } from './actions';
+import { getCategory } from '../Categories/actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -16,7 +17,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getGroups: (id) => dispatch(getGroups(id))
+    getGroups: (id) => dispatch(getGroups(id)),
+    getCategory: (id) => dispatch(getCategory(id))
   }
 }
 
@@ -30,19 +32,36 @@ class Group extends Component {
     if (localStorage.getItem("token")) {
       this.setState({ hasToken: true })
     }
-    const path = this.props.location.pathname.slice(-1)
-    this.props.getGroups(path)
+    const path = this.props.location.pathname.split('/')
+    const searchPath = path[2]
+    // console.log("PATH", path[2]);
+    // this.props.getGroups(path)
+    this.props.getCategory(searchPath)
   }
 
   renderGroups = () => {
-    if (this.props.groups.groups.length === 0) {
-      return <div><span className="navbarNewGroup"><Link to='/new_group'>Start a new group</Link></span></div>
-    } else if (this.props.groups.groups.length === 1) {
-      return <GroupCard group={this.props.groups.groups[0]}/>
-    } else {
-      return this.props.groups.groups.map( (group, index) => {
-        return <GroupCard key={index} category={this.props.category} group={group}/>
-      })
+    if (this.props.category.category.groups) {
+      console.log(this.props.category.category.groups);
+      if (this.props.category.category.groups == 0) {
+        return (
+          <div className="groupStart">
+            <div>
+              <h1>Currently no groups</h1>
+            </div>
+            <div className="groupStartLink">
+              <span className="navbarNewGroup">
+                <Link to='/new_group'>Start a new group</Link>
+              </span>
+            </div>
+          </div>
+        )
+      } else if (this.props.groups.groups.length === 1) {
+        return <GroupCard group={this.props.category.category.groups[0]}/>
+      } else {
+        return this.props.category.category.groups.map( (group, index) => {
+          return <GroupCard key={index} category={this.props.category} group={group}/>
+        })
+      }
     }
   }
 
@@ -66,6 +85,7 @@ class Group extends Component {
 
   render() {
     // console.log(this.props.location.pathname[0]);
+    console.log(this.props.category);
     return (
       <div>
         <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>

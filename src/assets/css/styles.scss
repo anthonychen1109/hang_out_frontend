@@ -289,9 +289,20 @@
   }
 }
 
+.groupStart {
+  display: flex;
+  flex-direction: column;
+}
+
+.groupStartLink {
+  margin-top: 40px;
+  text-align: center;
+}
+
 .groupDiv {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: 40px;
   margin-top: 40px;
 }
