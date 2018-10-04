@@ -135,6 +135,7 @@
       margin-bottom: 80px;
       max-height: 400px;
       overflow: scroll;
+      padding-bottom: 40px;
       padding-top: 40px; }
   .eventCards .eventCardsAllEvents {
     display: flex;
@@ -179,6 +180,12 @@
 .eventDetailDetails {
   padding-bottom: 40px;
   padding-top: 40px; }
+
+.eventDetailAttend {
+  margin-top: 10px; }
+
+.eventDetailAlreadyAttending {
+  color: red; }
 
 .dateCard {
   border: 1px solid black;
@@ -392,6 +399,8 @@
       color: white;
       text-shadow: 0px 0px 3px black; }
   .welcomeFiller .welcomeName {
+    display: flex;
+    flex-direction: column;
     font-family: conformity;
     font-size: 40px; }
     .welcomeFiller .welcomeName h1 {

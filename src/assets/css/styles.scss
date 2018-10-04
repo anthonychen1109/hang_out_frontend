@@ -173,6 +173,7 @@
       margin-bottom: 80px;
       max-height: 400px;
       overflow: scroll;
+      padding-bottom: 40px;
       padding-top: 40px;
     }
   }
@@ -230,6 +231,14 @@
 .eventDetailDetails {
   padding-bottom: 40px;
   padding-top: 40px;
+}
+
+.eventDetailAttend {
+  margin-top: 10px;
+}
+
+.eventDetailAlreadyAttending {
+  color: red;
 }
 
 .dateCard {
@@ -510,6 +519,8 @@
       }
   }
   .welcomeName {
+    display: flex;
+    flex-direction: column;
     font-family: conformity;
     font-size: 40px;
     h1 {

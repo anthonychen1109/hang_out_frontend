@@ -73,8 +73,8 @@ class GroupInfo extends Component {
       } else if (this.props.group.group.num_users === 1) {
         return <GroupInfoMember member={this.props.group.group.user_names[0]}/>
       } else {
-        return this.props.group.group.user_names.map(member => {
-          return <GroupInfoMember member={member}/>
+        return this.props.group.group.user_names.map( (member, index) => {
+          return <GroupInfoMember key={index} member={member}/>
         })
       }
     }

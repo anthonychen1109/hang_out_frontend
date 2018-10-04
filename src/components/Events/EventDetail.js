@@ -29,22 +29,65 @@ const mapDispatchToProps = (dispatch) => {
 class EventDetail extends Component {
 
   state = {
-    hasToken: ''
+    hasToken: '',
+    user_id: '',
+    username: '',
+    first_name: '',
+    last_name: '',
+    joined: ''
   }
 
   componentDidMount() {
     window.scrollTo(0, 0)
     // this.props.getEvents()
     if (localStorage.getItem("token")) {
-      this.setState({ hasToken: true })
+      this.getUser()
+      // this.setState({ hasToken: true })
     }
-    if (this.props.location.state) {
-      this.props.getEvent(this.props.location.state.id)
-    } else {
+    // if (this.props.location.state) {
+    //   this.props.getEvent(this.props.location.state.id)
+    // } else {
       const path = this.props.location.pathname.split('/')
       const searchPath = path[2]
       this.props.getEvent(searchPath)
+    // }
+    if (this.props.curr_event.curr_event) {
+      console.log("USER ID", this.state.user_id);
+      console.log("comparison", this.props.curr_event.curr_event.users.includes(this.state.user_id));
+      this.props.curr_event.curr_event.users.includes(this.state.user_id)
+      ? this.setState({ joined: true})
+      : null
     }
+  }
+
+  userAlreadyAttending = () => {
+    const path = this.props.location.pathname.split('/')
+    const searchPath = path[2]
+    this.props.getEvent(searchPath)
+    if (this.props.curr_event.curr_event) {
+      this.props.curr_event.curr_event.users.includes(this.state.user_id)
+      ? this.setState({ joined: true})
+      : null
+    }
+  }
+
+  getUser = () => {
+    fetch('http://localhost:8000/api/current_user/', {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem('token')}`
+        }
+      })
+        .then(res => res.json())
+        .then(json => {
+          console.log(json)
+          this.setState({
+            user_id: json.id,
+            hasToken: true,
+            username: json.username,
+            first_name: json.first_name,
+            last_name: json.last_name
+          }, () => this.userAlreadyAttending())
+        })
   }
 
   setToken = () => {
@@ -254,14 +297,40 @@ class EventDetail extends Component {
   }
 
   handleEvents = () => {
+    this.handleAttend()
     this.props.history.push({
       pathname: '/events'
     })
   }
 
+  handleAttend = () => {
+    // this.props.getEvent(this.props.curr_event.curr_event.id)
+    if (this.state.hasToken) {
+      const newUser = this.state.user_id
+      const newEvent = {
+        ...this.props.curr_event.curr_event,
+        users: [...this.props.curr_event.curr_event.users, newUser]
+      }
+      fetch(`http://localhost:8000/api/v1/events/${this.props.curr_event.curr_event.id}/`, {
+        method: "PUT",
+        body: JSON.stringify(newEvent),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      })
+      .then( r => r.json())
+      .then(response => {
+        console.log('Success:', response)
+        this.setState({ joined: true })
+      })
+      .catch(error => console.error('Error:', error));
+    } else {
+      alert("Must be logged in to attend event")
+    }
+  }
+
   render() {
     // console.log(this.props.curr_event.curr_event);
-    console.log(this.props.curr_event.curr_event);
     return (
       <div>
         <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>
@@ -297,6 +366,25 @@ class EventDetail extends Component {
                       See Events
                     </Button>
                   </div>
+                </div>
+                <div className="eventDetailAttend">
+                  {
+                    this.state.joined
+                    ? <div>
+                        <p className="eventDetailAlreadyAttending">Already Attending</p>
+                        <Button
+                          basic color="blue"
+                          onClick={this.handleEvents}
+                          disabled={true}>
+                          Attend
+                        </Button>
+                      </div>
+                    : <Button
+                      basic color="blue"
+                      onClick={this.handleEvents}>
+                      Attend
+                    </Button>
+                  }
                 </div>
               </div>
             </div>
