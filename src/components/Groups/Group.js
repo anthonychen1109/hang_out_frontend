@@ -5,11 +5,18 @@ import { Link } from 'react-router-dom';
 import GroupCard from './GroupCard';
 import GroupFiller from './GroupFiller';
 import StartOwn from '../StartOwn/StartOwn';
+import { getGroups } from './actions';
 
 const mapStateToProps = (state) => {
   return {
     groups: state.groups,
     category: state.category
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getGroups: (id) => dispatch(getGroups(id))
   }
 }
 
@@ -23,6 +30,8 @@ class Group extends Component {
     if (localStorage.getItem("token")) {
       this.setState({ hasToken: true })
     }
+    const path = this.props.location.pathname.slice(-1)
+    this.props.getGroups(path)
   }
 
   renderGroups = () => {
@@ -56,6 +65,7 @@ class Group extends Component {
   }
 
   render() {
+    // console.log(this.props.location.pathname[0]);
     return (
       <div>
         <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>
@@ -70,4 +80,4 @@ class Group extends Component {
   }
 }
 
-export default connect(mapStateToProps)(Group);
+export default connect(mapStateToProps, mapDispatchToProps )(Group);

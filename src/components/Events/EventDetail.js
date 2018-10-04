@@ -40,6 +40,9 @@ class EventDetail extends Component {
     }
     if (this.props.location.state) {
       this.props.getEvent(this.props.location.state.id)
+    } else {
+      const path = this.props.location.pathname.slice(-1)
+      this.props.getEvent(path)
     }
   }
 
@@ -214,14 +217,14 @@ class EventDetail extends Component {
               {
                 this.props.location.state.organizer_name
                 ? <p>Hosted by {this.props.location.state.organizer_name}</p>
-                : null
+                : <p>Hosted by {this.props.curr_event.curr_event.organizer}</p>
               }
             </div>
             <div>
               {
                 this.props.location.state.name
                 ? <p>From {this.props.location.state.name}</p>
-                : null
+                : <p>From {this.props.curr_event.curr_event.name}</p>
               }
             </div>
           </div>
@@ -253,7 +256,7 @@ class EventDetail extends Component {
 
   render() {
     // console.log(this.props.curr_event.curr_event);
-    console.log(this.props);
+    console.log(this.props.curr_event);
     return (
       <div>
         <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>
