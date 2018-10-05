@@ -331,6 +331,45 @@ class EventDetail extends Component {
     }
   }
 
+  handlePop = () => {
+    console.log("HERE");
+    if (this.state.hasToken) {
+      const newUser = this.state.user_id
+      console.log("nested", this.props.curr_event.curr_event.users);
+      const popped = this.props.curr_event.curr_event.users.filter( user => {
+        console.log("userid", user.id);
+        console.log("stateid", this.state.user_id);
+        console.log("equal?", user.id === this.state.user_id);
+        return user.id !== this.state.user_id
+      })
+      console.log("POPPED", popped);
+      const newEvent = {
+        ...this.props.curr_event.curr_event,
+        users: popped
+      }
+      fetch(`http://localhost:8000/api/v1/events/${this.props.curr_event.curr_event.id}/`, {
+        method: "PUT",
+        body: JSON.stringify(newEvent),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      })
+      .then( r => r.json())
+      .then(response => {
+        console.log('Success:', response)
+        this.setState({ joined: true }, this.props.history.push({
+          pathname: '/events'
+        }))
+      })
+      .catch(error => console.error('Error:', error));
+    } else {
+      alert("Must be logged in to attend event")
+      this.props.history.push({
+        pathname: this.props.location.pathname
+      })
+    }
+  }
+
   render() {
     // console.log(this.props.curr_event.curr_event);
     return (
@@ -379,6 +418,11 @@ class EventDetail extends Component {
                           onClick={this.handleEvents}
                           disabled={true}>
                           Attend
+                        </Button>
+                        <Button
+                          basic color="blue"
+                          onClick={this.handlePop}>
+                          Pop myself out of the array
                         </Button>
                       </div>
                     : <Button
