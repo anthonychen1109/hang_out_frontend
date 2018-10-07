@@ -332,10 +332,8 @@ class EventDetail extends Component {
   }
 
   handlePop = () => {
-    console.log("HERE");
     if (this.state.hasToken) {
       const newUser = this.state.user_id
-      console.log("nested", this.props.curr_event.curr_event.users);
       const popped = this.props.curr_event.curr_event.users.filter( user => {
         return user !== this.state.user_id
       })
@@ -343,7 +341,6 @@ class EventDetail extends Component {
         ...this.props.curr_event.curr_event,
         users: popped
       }
-      console.log("new event", newEvent);
       fetch(`http://localhost:8000/api/v1/events/${this.props.curr_event.curr_event.id}/`, {
         method: "PUT",
         body: JSON.stringify(newEvent),
@@ -368,7 +365,6 @@ class EventDetail extends Component {
   }
 
   render() {
-    // console.log(this.props.curr_event.curr_event);
     return (
       <div>
         <Navbar setToken={this.setToken} deleteToken={this.deleteToken} hasToken={this.state.hasToken}/>

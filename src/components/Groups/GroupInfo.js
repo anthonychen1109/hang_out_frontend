@@ -41,7 +41,10 @@ class GroupInfo extends Component {
       this.getUserInfo()
       // this.setState({ hasToken: true })
     }
-    this.props.getGroup(this.props.location.state.id)
+    const path = this.props.location.pathname.split('/')
+    const searchPath = path[2]
+    this.props.getGroup(searchPath)
+    // this.props.getGroup(this.props.location.state.id)
   }
 
   renderGroup = () => {
@@ -159,13 +162,46 @@ class GroupInfo extends Component {
     .catch(error => console.error('Error:', error));
   }
 
+  handleLeaveGroup = () => {
+    if (this.state.hasToken) {
+      const newUser = this.state.user_id
+      const popped = this.props.group.group.users.filter( user => {
+        return user !== newUser
+      })
+      const newGroup = {
+        ...this.props.group.group,
+        users: popped
+      }
+      fetch(`http://localhost:8000/api/v1/groups/${this.props.group.group.id}/`, {
+        method: "PUT",
+        body: JSON.stringify(newGroup),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      })
+      .then( r => r.json())
+      .then(response => {
+        console.log('Success:', response)
+        this.setState({ joined: false }, this.props.history.push({
+          pathname: `/categories/${this.props.group.group.category}`
+        }))
+      })
+      .catch(error => console.error('Error:', error));
+    } else {
+      alert("Must be logged in to attend event")
+      this.props.history.push({
+        pathname: this.props.location.pathname
+      })
+    }
+  }
+
   showJoinButton = () => {
     if (this.props.group.group.users) {
       let result = [this.props.group.group.users].map(function (x) {
         return parseInt(x, 10);
       });
       return result.includes(this.state.user_id) || this.state.joined === true
-      ? <div><div><p className="alreadyInGroup">Already in this group</p></div><div><Button inverted color="blue" disabled={true}>Join Group</Button></div></div>
+      ? <div><div><p className="alreadyInGroup">Leave Group?</p></div><div><Button inverted color="red" onClick={this.handleLeaveGroup}>Leave Group</Button></div></div>
       : <Button inverted color="blue" onClick={this.allowedToJoinGroup}>Join Group</Button>
     }
   }
@@ -190,7 +226,7 @@ class GroupInfo extends Component {
           upcomingEvents.push(event)
         }
       })
-      console.log(this.props.group.group);
+      console.log(this.props.group.group.category);
       // console.log(this.props.group.group.user_names);
     }
     return (
