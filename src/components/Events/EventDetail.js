@@ -337,16 +337,13 @@ class EventDetail extends Component {
       const newUser = this.state.user_id
       console.log("nested", this.props.curr_event.curr_event.users);
       const popped = this.props.curr_event.curr_event.users.filter( user => {
-        console.log("userid", user.id);
-        console.log("stateid", this.state.user_id);
-        console.log("equal?", user.id === this.state.user_id);
-        return user.id !== this.state.user_id
+        return user !== this.state.user_id
       })
-      console.log("POPPED", popped);
       const newEvent = {
         ...this.props.curr_event.curr_event,
         users: popped
       }
+      console.log("new event", newEvent);
       fetch(`http://localhost:8000/api/v1/events/${this.props.curr_event.curr_event.id}/`, {
         method: "PUT",
         body: JSON.stringify(newEvent),
