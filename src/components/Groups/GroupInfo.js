@@ -121,7 +121,7 @@ class GroupInfo extends Component {
   }
 
   getUserInfo = () => {
-    fetch('http://localhost:8000/api/current_user/', {
+    fetch('https://hang-out-backend.herokuapp.com/api/current_user/', {
         headers: {
           Authorization: `JWT ${localStorage.getItem('token')}`
         }
@@ -147,7 +147,7 @@ class GroupInfo extends Component {
     }
     console.log("GROUP", group);
     console.log('new user', newUser);
-    fetch(`http://localhost:8000/api/v1/groups/${this.props.group.group.id}/`, {
+    fetch(`https://hang-out-backend.herokuapp.com/api/v1/groups/${this.props.group.group.id}/`, {
       method: "PUT",
       body: JSON.stringify(group),
       headers:{
@@ -172,7 +172,7 @@ class GroupInfo extends Component {
         ...this.props.group.group,
         users: popped
       }
-      fetch(`http://localhost:8000/api/v1/groups/${this.props.group.group.id}/`, {
+      fetch(`https://hang-out-backend.herokuapp.com/api/v1/groups/${this.props.group.group.id}/`, {
         method: "PUT",
         body: JSON.stringify(newGroup),
         headers:{

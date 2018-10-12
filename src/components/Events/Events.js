@@ -41,7 +41,7 @@ class Events extends Component {
   }
 
   getUser = () => {
-    fetch('http://localhost:8000/api/current_user/', {
+    fetch('https://hang-out-backend.herokuapp.com/api/current_user/', {
         headers: {
           Authorization: `JWT ${localStorage.getItem('token')}`
         }

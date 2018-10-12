@@ -72,7 +72,7 @@ class EventDetail extends Component {
   }
 
   getUser = () => {
-    fetch('http://localhost:8000/api/current_user/', {
+    fetch('https://hang-out-backend.herokuapp.com/api/current_user/', {
         headers: {
           Authorization: `JWT ${localStorage.getItem('token')}`
         }
@@ -308,7 +308,7 @@ class EventDetail extends Component {
         ...this.props.curr_event.curr_event,
         users: [...this.props.curr_event.curr_event.users, newUser]
       }
-      fetch(`http://localhost:8000/api/v1/events/${this.props.curr_event.curr_event.id}/`, {
+      fetch(`https://hang-out-backend.herokuapp.com/api/v1/events/${this.props.curr_event.curr_event.id}/`, {
         method: "PUT",
         body: JSON.stringify(newEvent),
         headers:{
@@ -341,7 +341,7 @@ class EventDetail extends Component {
         ...this.props.curr_event.curr_event,
         users: popped
       }
-      fetch(`http://localhost:8000/api/v1/events/${this.props.curr_event.curr_event.id}/`, {
+      fetch(`https://hang-out-backend.herokuapp.com/api/v1/events/${this.props.curr_event.curr_event.id}/`, {
         method: "PUT",
         body: JSON.stringify(newEvent),
         headers:{

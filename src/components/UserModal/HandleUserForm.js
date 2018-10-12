@@ -29,7 +29,7 @@ class HandleUserForm extends Component {
           username: this.state.username,
           password: this.state.password,
       }
-      fetch('http://localhost:8000/token-auth/', {
+      fetch('https://hang-out-backend.herokuapp.com/token-auth/', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -68,7 +68,7 @@ class HandleUserForm extends Component {
           last_name: this.state.last_name
       }
        try {
-         fetch('http://localhost:8000/api/users/', {
+         fetch('https://hang-out-backend.herokuapp.com/api/users/', {
            method: 'POST',
            headers: {
              'Accept': 'application/json',

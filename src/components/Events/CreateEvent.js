@@ -58,7 +58,7 @@ class CreateEvent extends Component {
   }
 
   getUser = () => {
-    fetch('http://localhost:8000/api/current_user/', {
+    fetch('https://hang-out-backend.herokuapp.com/api/current_user/', {
         headers: {
           Authorization: `JWT ${localStorage.getItem('token')}`
         }
@@ -285,7 +285,7 @@ class CreateEvent extends Component {
       // group_img: this.state.hangOutImage,
       // organizer_name: this.state.username
     }
-    fetch('http://localhost:8000/api/v1/events/', {
+    fetch('https://hang-out-backend.herokuapp.com/api/v1/events/', {
       method: "POST",
       body: JSON.stringify(newEvent),
       headers:{

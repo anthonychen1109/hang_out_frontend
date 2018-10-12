@@ -1,5 +1,5 @@
 export const fetch_user = (id) => {
-  return fetch(`http://localhost:8000/api/v1/profiles/${id}`, {
+  return fetch(`https://hang-out-backend.herokuapp.com/api/v1/profiles/${id}`, {
     method: "GET",
     headers: {
       'Accept': 'application/json',
