@@ -79,7 +79,7 @@ class Events extends Component {
 
   renderUserEvents = () => {
     console.log(this.props.userInfo);
-    if (this.props.userInfo.user) {
+    if (this.props.userInfo.user && this.props.userInfo.user.length != undefined) {
       if (this.props.userInfo.user.events.length === 0) {
         return <div>You currently have no events. Please join one</div>
       } else if (this.props.userInfo.user.events.length === 1) {
