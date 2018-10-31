@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { getEvents, getUserInfo } from './actions';
+
+import EventCard from './EventCard';
+import EventsFiller from './EventsFiller';
+import Navbar from '../Navbar/Navbar';
+import StartOwn from '../StartOwn/StartOwn';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getEvents, getUserInfo } from './actions';
-import Navbar from '../Navbar/Navbar';
-import EventsFiller from './EventsFiller';
-import EventCard from './EventCard';
-import StartOwn from '../StartOwn/StartOwn';
 
 const mapStateToProps = (state) => {
   return {
@@ -77,9 +78,8 @@ class Events extends Component {
   }
 
   renderUserEvents = () => {
-    // console.log('before condition check');
+    console.log(this.props.userInfo);
     if (this.props.userInfo.user) {
-      console.log(this.props.userInfo);
       if (this.props.userInfo.user.events.length === 0) {
         return <div>You currently have no events. Please join one</div>
       } else if (this.props.userInfo.user.events.length === 1) {
@@ -89,6 +89,8 @@ class Events extends Component {
           return <div key={index} onClick={() => this.showEventDetails(event.id)} className="eventCardDisplay"><EventCard event={event} /></div>
         })
       }
+    } else {
+      return <div> You currently have no events.Please join one </div>
     }
   }
 
