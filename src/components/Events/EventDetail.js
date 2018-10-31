@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { getEvents, getUserInfo } from './actions';
-import { getGroup } from '../Groups/actions';
-import { getCategory } from '../Categories/actions';
-import { getEvent } from '../Events/actions';
+
+import { Button } from 'semantic-ui-react'
 import Navbar from '../Navbar/Navbar';
 import StartOwn from '../StartOwn/StartOwn';
-import { Button } from 'semantic-ui-react'
+import { connect } from 'react-redux';
+import { getCategory } from '../Categories/actions';
+import { getEvent } from '../Events/actions';
+import { getGroup } from '../Groups/actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -415,7 +416,7 @@ class EventDetail extends Component {
                         <Button
                           basic color="blue"
                           onClick={this.handlePop}>
-                          Pop myself out of the array
+                          Unattend
                         </Button>
                       </div>
                     : <Button
