@@ -26,7 +26,7 @@ Page with all available groups for user to create or join.
 
 ### Group page
 
-
+![Alt text](./screenshots/group.png?raw=true "Login Screen")
 
 All events inside the group that has been selected.
 
