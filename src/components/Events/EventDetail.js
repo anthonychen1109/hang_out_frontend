@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { getCategory } from '../Categories/actions';
 import { getEvent } from '../Events/actions';
 import { getGroup } from '../Groups/actions';
+import withUser from '../Hoc/withUser';
 
 const mapStateToProps = (state) => {
   return {
@@ -444,4 +445,4 @@ class EventDetail extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventDetail);
+export default withUser(connect(mapStateToProps, mapDispatchToProps)(EventDetail));
